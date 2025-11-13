@@ -1,0 +1,148 @@
+{
+  "$schema": "../../docs/frameworks/ai-impact-observability/schemas/kpi-dashboard-schema.json",
+  "kpis": [
+    {
+      "id": "KPI-001",
+      "nombre": "Costo de Onboarding Lento",
+      "descripcionEjecutiva": "Tiempo y dinero perdidos al incorporar nuevos developers Flutter hasta productividad plena (70-80% del nivel de un miembro senior).",
+      "metricasSubyacentes": ["SPACE-ACT-002"],
+      "calculoCostoAnual": {
+        "formula": "(Días Onboarding × Salario Diario × Nuevas Contrataciones) × (1 - Productividad Durante Onboarding)",
+        "parametros": {
+          "diasOnboarding": 42,
+          "salarioDiario": 577,
+          "nuevasContrataciones": 4,
+          "productividadDuranteOnboarding": 0.30
+        }
+      },
+      "costoBaselineDolares": 69000,
+      "ahorroProyectadoDolares": 34500,
+      "visualizacionSugerida": "BAR_CHART",
+      "ejemploVisualizacion": "Gráfico de barras comparando costo actual ($16,964/contratación) vs costo con IA ($8,482/contratación)",
+      "narrativaCostoInaccion": "Nuestro proceso de onboarding lento cuesta $69,000/año en productividad perdida - 50% recuperable con desarrollo asistido por IA.",
+      "prioridad": 1,
+      "audienciaObjetivo": ["CTO", "VP_ENGINEERING"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    },
+    {
+      "id": "KPI-002",
+      "nombre": "Costo de Boilerplate y Tareas Repetitivas",
+      "descripcionEjecutiva": "Tiempo (y salario) invertido en escribir código repetitivo y predecible que no aporta diferenciación competitiva: StatefulWidget boilerplate, JSON serialization, test setup.",
+      "metricasSubyacentes": ["SPACE-EFF-002"],
+      "calculoCostoAnual": {
+        "formula": "(Tamaño Equipo) × (Salario Promedio) × (% Tiempo en Boilerplate)",
+        "parametros": {
+          "tamañoEquipo": 20,
+          "salarioPromedio": 150000,
+          "porcentajeTiempoBoilerplate": 0.35
+        }
+      },
+      "costoBaselineDolares": 1050000,
+      "ahorroProyectadoDolares": 630000,
+      "visualizacionSugerida": "PIE_CHART",
+      "ejemploVisualizacion": "Dos pie charts lado a lado mostrando distribución del tiempo: Sin IA (35% boilerplate, 65% features) vs Con IA (14% boilerplate, 86% features)",
+      "narrativaCostoInaccion": "Nuestro equipo gasta $1,050,000/año en código repetitivo sin valor de negocio - 60% recuperable con desarrollo asistido por IA.",
+      "prioridad": 2,
+      "audienciaObjetivo": ["CTO", "CFO", "VP_ENGINEERING"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    },
+    {
+      "id": "KPI-003",
+      "nombre": "Impacto de Crashes en Revenue",
+      "descripcionEjecutiva": "Impacto financiero directo de crashes en producción: usuarios afectados experimentan frustración, churn aumenta, ratings de tiendas bajan, revenue se pierde.",
+      "metricasSubyacentes": ["DORA-CFR-001"],
+      "calculoCostoAnual": {
+        "formula": "(MAU) × (% Usuarios con Crashes) × (Churn Rate por Crashes) × (ARPU) × (LTV Factor)",
+        "parametros": {
+          "mau": 1000000,
+          "porcentajeUsuariosConCrashes": 0.015,
+          "churnRatePorCrashes": 0.20,
+          "arpuAnual": 10,
+          "ltvFactor": 12
+        }
+      },
+      "costoBaselineDolares": 360000,
+      "ahorroProyectadoDolares": 108000,
+      "visualizacionSugerida": "LINE_CHART",
+      "ejemploVisualizacion": "Gráfico de línea mostrando tendencia de Crash-Free Users % a lo largo del tiempo (baseline 98.5% vs target con IA 99.2%) con revenue perdido anotado",
+      "narrativaCostoInaccion": "Los crashes de nuestra app cuestan $360,000/año en revenue perdido - 30% recuperable con desarrollo asistido por IA.",
+      "prioridad": 3,
+      "audienciaObjetivo": ["CFO", "CEO", "VP_ENGINEERING"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    },
+    {
+      "id": "KPI-004",
+      "nombre": "Costo de Cycle Time Lento",
+      "descripcionEjecutiva": "Costo de oportunidad de llegar al mercado más lento que la competencia. Features que podrían generar revenue llegan 5 días tarde, ventanas de oportunidad se pierden.",
+      "metricasSubyacentes": ["DORA-LT-001"],
+      "calculoCostoAnual": {
+        "formula": "(Features/Año) × (Revenue Promedio por Feature) × (% Revenue Perdido por Delay)",
+        "parametros": {
+          "featuresLanzadasPorAño": 24,
+          "revenuePromedioFeature": 208333,
+          "porcentajeRevenuePerdidoPorDelay": 0.05
+        }
+      },
+      "costoBaselineDolares": 250000,
+      "ahorroProyectadoDolares": 250000,
+      "visualizacionSugerida": "TIMELINE",
+      "ejemploVisualizacion": "Timeline/Gantt mostrando ciclo de desarrollo: Sin IA (12 días) vs Con IA (7 días) con fases segmentadas (Dev, Review, CI, Tiendas) y anotación de 5 días de ventaja = $250K/año",
+      "narrativaCostoInaccion": "Nuestro ciclo lento de desarrollo cuesta $250,000/año en oportunidad de time-to-market perdida - ventaja competitiva recuperable con desarrollo asistido por IA.",
+      "prioridad": 4,
+      "audienciaObjetivo": ["CEO", "CTO", "CFO"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    },
+    {
+      "id": "KPI-005",
+      "nombre": "Costo de Rotación de Talento",
+      "descripcionEjecutiva": "Costo financiero de reemplazar developers que abandonan el equipo: recruiting fees (15-25% del salario), onboarding (6 semanas perdidas), productividad perdida, conocimiento perdido.",
+      "metricasSubyacentes": ["SPACE-SAT-001"],
+      "calculoCostoAnual": {
+        "formula": "(Tamaño Equipo) × (Turnover Rate) × (Costo de Reemplazo)",
+        "parametros": {
+          "tamañoEquipo": 20,
+          "turnoverRate": 0.25,
+          "costoReemplazo": 65000
+        }
+      },
+      "costoBaselineDolares": 325000,
+      "ahorroProyectadoDolares": 91000,
+      "visualizacionSugerida": "GAUGE",
+      "ejemploVisualizacion": "Gauge circular mostrando turnover rate: Sin IA (25%, zona roja) vs Con IA (18%, zona verde) con anotación '1 rotación menos = $65K ahorrados'",
+      "narrativaCostoInaccion": "La rotación de nuestro equipo cuesta $325,000/año - 28% reducible mejorando satisfacción de developers con herramientas de IA.",
+      "prioridad": 5,
+      "audienciaObjetivo": ["CTO", "VP_ENGINEERING", "CEO"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    }
+  ],
+  "resumenEjecutivo": {
+    "costoTotalInaccion": 2054000,
+    "ahorroTotalConIA": 1113500,
+    "inversionAnualIA": 9360,
+    "herramientaIA": "GitHub Copilot",
+    "costoMensualPorDeveloper": 39,
+    "tamañoEquipo": 20,
+    "roiPorcentaje": 11791,
+    "paybackPeriodDias": 3.1,
+    "npv3AñosDolares": 2745834,
+    "tasaDescuentoNPV": 0.10
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-11-13T00:00:00Z",
+    "description": "Ejemplo de los 5 KPIs críticos del Dashboard Ejecutivo del Framework de Observabilidad del Impacto de IA para Flutter. Estos KPIs cuantifican el costo anual de NO adoptar IA vs el ahorro proyectado con IA.",
+    "teamSizeExample": 20,
+    "salarioPromedioExample": 150000,
+    "notes": [
+      "Todos los valores de costo y ahorro son para un equipo de 20 developers con salario promedio de $150,000/año",
+      "Los porcentajes de mejora están basados en GitHub Copilot Impact Study (2022) y estudios académicos",
+      "El ROI total de 11,791% asume adopción de GitHub Copilot a $39/dev/mes",
+      "Estos KPIs son validados contra schemas/kpi-dashboard-schema.json"
+    ]
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "$schema": "../../docs/frameworks/ai-impact-observability/schemas/metrics-schema.json",
+  "metadata": {
+    "teamName": "Flutter Mobile Team",
+    "teamSize": 20,
+    "measurementPeriod": {
+      "start": "2025-01-01",
+      "end": "2025-03-31",
+      "label": "Q1 2025 Baseline"
+    },
+    "aiToolsAdopted": false,
+    "avgSalaryUSD": 150000,
+    "framework": "AI Impact Observability v1.0.0"
+  },
+  "doraMetrics": [
+    {
+      "id": "DORA-LT-001",
+      "nombre": "Lead Time para Cambios",
+      "categoria": "DORA_LEAD_TIME",
+      "valorMedido": 12.3,
+      "unidad": "días",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Git analytics - commits to production tags",
+      "muestraTamaño": 142,
+      "clasificacion": "mejorable",
+      "notas": "Incluye revisión de tiendas (App Store 24-48h, Play Store 2-8h)"
+    },
+    {
+      "id": "DORA-DF-001",
+      "nombre": "Deployment Frequency",
+      "categoria": "DORA_DEPLOYMENT_FREQUENCY",
+      "valorMedido": 1.2,
+      "unidad": "deployments/semana",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Git tags contados en últimos 6 meses",
+      "muestraTamaño": 26,
+      "clasificacion": "mejorable",
+      "notas": "Limitado por revisión manual de tiendas"
+    },
+    {
+      "id": "DORA-CFR-001",
+      "nombre": "Change Failure Rate",
+      "categoria": "DORA_CHANGE_FAILURE_RATE",
+      "valorMedido": 37.5,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Firebase Crashlytics - deployments con crashes críticos en 24h",
+      "muestraTamaño": 8,
+      "clasificacion": "crítico",
+      "notas": "3 de 8 deployments tuvieron crashes críticos"
+    },
+    {
+      "id": "DORA-MTTR-001",
+      "nombre": "Mean Time to Recover",
+      "categoria": "DORA_MTTR",
+      "valorMedido": 42,
+      "unidad": "horas",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Tracking manual de incidentes (últimos 10)",
+      "muestraTamaño": 10,
+      "clasificacion": "mejorable",
+      "notas": "Incluye tiempo de coordinación entre squads"
+    }
+  ],
+  "spaceMetrics": [
+    {
+      "id": "SPACE-SAT-001",
+      "nombre": "Developer Satisfaction (NPS)",
+      "categoria": "SPACE_SATISFACTION",
+      "valorMedido": 15,
+      "unidad": "nps_score",
+      "fechaMedicion": "2025-03-15",
+      "metodologia": "Encuesta trimestral anónima",
+      "muestraTamaño": 18,
+      "desglose": {
+        "promoters": 4,
+        "passives": 10,
+        "detractors": 4,
+        "satisfactionScore": 3.2
+      },
+      "clasificacion": "mejorable",
+      "notas": "Participation rate: 90% (18 de 20 developers)"
+    },
+    {
+      "id": "SPACE-SAT-002",
+      "nombre": "Turnover Rate",
+      "categoria": "SPACE_SATISFACTION",
+      "valorMedido": 25,
+      "unidad": "porcentaje_anual",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Datos de HR - resignations en 2024",
+      "muestraTamaño": 20,
+      "notas": "5 de 20 developers se fueron en 2024"
+    },
+    {
+      "id": "SPACE-PERF-001",
+      "nombre": "Velocity (Story Points)",
+      "categoria": "SPACE_PERFORMANCE",
+      "valorMedido": 48,
+      "unidad": "story_points_per_sprint",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Jira - promedio últimos 6 sprints",
+      "muestraTamaño": 6,
+      "clasificacion": "estable",
+      "notas": "Sprint duration: 2 semanas"
+    },
+    {
+      "id": "SPACE-ACT-001",
+      "nombre": "Code Review Time",
+      "categoria": "SPACE_ACTIVITY",
+      "valorMedido": 36,
+      "unidad": "horas",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "GitHub API - PR created to merged (últimos 50 PRs)",
+      "muestraTamaño": 50,
+      "clasificacion": "mejorable",
+      "notas": "Bottleneck: Solo 8 seniors aprobando PRs"
+    },
+    {
+      "id": "SPACE-ACT-002",
+      "nombre": "Onboarding Time",
+      "categoria": "SPACE_ACTIVITY",
+      "valorMedido": 42,
+      "unidad": "días",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Tracking manual - últimas 5 contrataciones",
+      "muestraTamaño": 5,
+      "clasificacion": "mejorable",
+      "notas": "Tiempo hasta primer PR mergeado productivo"
+    },
+    {
+      "id": "SPACE-COMM-001",
+      "nombre": "Documentation Coverage",
+      "categoria": "SPACE_COMMUNICATION",
+      "valorMedido": 48,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "dartdoc --validate-links",
+      "muestraTamaño": 1523,
+      "notas": "1523 public elements, 731 documented"
+    },
+    {
+      "id": "SPACE-EFF-001",
+      "nombre": "Build Time en CI",
+      "categoria": "SPACE_EFFICIENCY",
+      "valorMedido": 15.2,
+      "unidad": "minutos",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "GitHub Actions - últimos 50 builds exitosos",
+      "muestraTamaño": 50,
+      "clasificacion": "bueno",
+      "notas": "Con caching activado"
+    },
+    {
+      "id": "SPACE-EFF-002",
+      "nombre": "Tiempo en Boilerplate",
+      "categoria": "SPACE_EFFICIENCY",
+      "valorMedido": 35,
+      "unidad": "porcentaje_tiempo",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Encuesta de estimación (pregunta agregada a satisfaction survey)",
+      "muestraTamaño": 18,
+      "notas": "Promedio de respuestas: StatefulWidget, JSON models, test setup"
+    }
+  ],
+  "flutterSpecificMetrics": [
+    {
+      "id": "FLUTTER-001",
+      "nombre": "Crash-Free Users",
+      "categoria": "FLUTTER_QUALITY",
+      "valorMedido": 93.2,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Firebase Crashlytics - últimos 30 días",
+      "muestraTamaño": 45820,
+      "desglose": {
+        "totalSessions": 45820,
+        "crashedSessions": 3116,
+        "crashFreeRate": 93.2
+      },
+      "clasificacion": "mejorable"
+    },
+    {
+      "id": "FLUTTER-002",
+      "nombre": "Hot Reload Success Rate",
+      "categoria": "FLUTTER_DX",
+      "valorMedido": 82,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Encuesta manual - últimas 100 hot reloads",
+      "muestraTamaño": 100,
+      "notas": "Degrada con codebase grande (1847 widgets)"
+    },
+    {
+      "id": "FLUTTER-003",
+      "nombre": "Platform Channels Stability",
+      "categoria": "FLUTTER_QUALITY",
+      "valorMedido": 3,
+      "unidad": "crashes_per_month",
+      "fechaMedicion": "2025-03-31",
+      "metodologia": "Crashlytics filtrado por platform channel stack traces",
+      "muestraTamaño": 30,
+      "notas": "Crashes en native code (iOS/Android)"
+    }
+  ],
+  "costAnalysis": {
+    "hourlyRate": 72.12,
+    "hoursPerYear": 2080,
+    "teamSizeForCalculation": 20,
+    "costoDeInaccionAnual": {
+      "boilerplate": 1050466,
+      "onboarding": 72765,
+      "crashes": 173088,
+      "cycleTime": 119719,
+      "turnover": 44962,
+      "total": 1461000
+    },
+    "notaCalculos": "Ver formulas.md para desglose completo"
+  },
+  "topPainPoints": [
+    {
+      "rank": 1,
+      "painPoint": "Boilerplate me mata - 40% de mi tiempo",
+      "menciones": 15,
+      "categoria": "efficiency"
+    },
+    {
+      "rank": 2,
+      "painPoint": "Code review bottleneck - espero días",
+      "menciones": 12,
+      "categoria": "activity"
+    },
+    {
+      "rank": 3,
+      "painPoint": "Onboarding cuesta 2 meses, no tengo tiempo para mentorear",
+      "menciones": 9,
+      "categoria": "activity"
+    },
+    {
+      "rank": 4,
+      "painPoint": "Crashes en producción embarazosos",
+      "menciones": 8,
+      "categoria": "quality"
+    },
+    {
+      "rank": 5,
+      "painPoint": "Falta documentación de arquitectura",
+      "menciones": 7,
+      "categoria": "communication"
+    }
+  ]
+}

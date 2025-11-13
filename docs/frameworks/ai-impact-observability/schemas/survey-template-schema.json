@@ -1,0 +1,188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://framework.ai-impact-observability/schemas/encuesta-satisfaccion.json",
+  "title": "Encuesta de Satisfacción",
+  "description": "Schema para encuestas estructuradas de medición SPACE - Satisfaction",
+  "type": "object",
+  "required": [
+    "id",
+    "nombre",
+    "preguntas",
+    "escalaMedicion",
+    "frecuenciaAplicacion",
+    "tiempoCompletacionMinutos",
+    "preguntasControl",
+    "metodoAnalisis"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SURVEY-[A-Z]+-[0-9]{3}$",
+      "description": "Identificador único en formato SURVEY-[TIPO]-[###]",
+      "examples": ["SURVEY-SAT-001"]
+    },
+    "nombre": {
+      "type": "string",
+      "description": "Título de la encuesta",
+      "examples": ["Encuesta de Satisfacción del Desarrollador Flutter Q4 2025"]
+    },
+    "descripcion": {
+      "type": "string",
+      "description": "Propósito y contexto de la encuesta"
+    },
+    "preguntas": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["id", "orden", "texto", "tipo", "esControlOrganizacional"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^Q[0-9]+$",
+            "description": "Identificador de pregunta (Q1, Q2, ...)"
+          },
+          "orden": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Orden de presentación de la pregunta"
+          },
+          "texto": {
+            "type": "string",
+            "description": "Texto de la pregunta tal como se presenta al usuario"
+          },
+          "tipo": {
+            "type": "string",
+            "enum": ["LIKERT", "NPS", "OPEN_TEXT", "MULTIPLE_CHOICE"],
+            "description": "Tipo de pregunta"
+          },
+          "categoriaMetrica": {
+            "type": ["string", "null"],
+            "enum": [
+              "SPACE_SATISFACTION",
+              "SPACE_PERFORMANCE",
+              "SPACE_ACTIVITY",
+              "SPACE_COMMUNICATION",
+              "SPACE_EFFICIENCY",
+              null
+            ],
+            "description": "A qué dimensión SPACE mapea (null si es pregunta de control)"
+          },
+          "esControlOrganizacional": {
+            "type": "boolean",
+            "description": "Si es pregunta de control para aislar factores no-tool"
+          },
+          "descripcionControl": {
+            "type": "string",
+            "description": "Explicación de qué factor organizacional controla esta pregunta (requerido si esControlOrganizacional = true)"
+          },
+          "opcionesRespuesta": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["valor", "etiqueta"],
+              "properties": {
+                "valor": {
+                  "type": "integer",
+                  "description": "Valor numérico de la opción (e.g., 1-5 para Likert, 0-10 para NPS)"
+                },
+                "etiqueta": {
+                  "type": "string",
+                  "description": "Etiqueta textual de la opción",
+                  "examples": ["Muy insatisfecho", "Neutral", "Muy satisfecho"]
+                }
+              }
+            },
+            "description": "Opciones de respuesta (para LIKERT, NPS, MULTIPLE_CHOICE)"
+          },
+          "requerida": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si la pregunta es obligatoria"
+          }
+        }
+      }
+    },
+    "escalaMedicion": {
+      "type": "string",
+      "enum": ["LIKERT_5", "LIKERT_7", "NPS_0_10"],
+      "description": "Tipo de escala para respuestas Likert o NPS"
+    },
+    "frecuenciaAplicacion": {
+      "type": "string",
+      "enum": ["MONTHLY", "QUARTERLY", "BIANNUAL"],
+      "description": "Con qué frecuencia ejecutar la encuesta"
+    },
+    "tiempoCompletacionMinutos": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Tiempo estimado para completar (máximo 10 min para >75% completion rate)"
+    },
+    "preguntasControl": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "pattern": "^Q[0-9]+$"
+      },
+      "description": "IDs de preguntas que aíslan factores no-tool (mínimo 2)"
+    },
+    "metodoAnalisis": {
+      "type": "string",
+      "description": "Cómo interpretar resultados: cálculo de scores, correlaciones, NPS, etc."
+    },
+    "targetsCompletacion": {
+      "type": "object",
+      "properties": {
+        "completionRateMinimo": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 75,
+          "description": "Porcentaje mínimo de completion rate aceptable"
+        },
+        "tiempoPromedioEsperado": {
+          "type": "number",
+          "description": "Tiempo promedio esperado de completación en minutos"
+        }
+      }
+    },
+    "distribucion": {
+      "type": "object",
+      "properties": {
+        "canal": {
+          "type": "string",
+          "enum": ["EMAIL", "SLACK", "TEAMS", "GOOGLE_FORMS", "TYPEFORM", "INTERNAL_TOOL"],
+          "description": "Canal de distribución de la encuesta"
+        },
+        "audiencia": {
+          "type": "string",
+          "description": "A quiénes enviar la encuesta",
+          "examples": ["Todos los developers Flutter", "Equipo móvil completo", "Seniors únicamente"]
+        },
+        "recordatorios": {
+          "type": "boolean",
+          "default": true,
+          "description": "Si enviar recordatorios a quienes no han completado"
+        }
+      }
+    },
+    "privacidad": {
+      "type": "object",
+      "properties": {
+        "anonima": {
+          "type": "boolean",
+          "default": true,
+          "description": "Si las respuestas son anónimas"
+        },
+        "retencionDatos": {
+          "type": "string",
+          "description": "Cuánto tiempo se retienen las respuestas",
+          "examples": ["12 meses", "Indefinido para análisis de tendencias"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

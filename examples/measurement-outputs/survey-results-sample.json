@@ -1,0 +1,404 @@
+{
+  "$schema": "../../docs/frameworks/ai-impact-observability/schemas/survey-template-schema.json",
+  "metadata": {
+    "surveyId": "satisfaction-q3-2025",
+    "quarter": "Q3 2025",
+    "framework": "AI Impact Observability - SPACE Satisfaction",
+    "conductedDate": "2025-09-30",
+    "teamSize": 20,
+    "responseCount": 17,
+    "participationRate": 85.0,
+    "isBaseline": false,
+    "baselineSurveyId": "satisfaction-q1-2025",
+    "aiToolsDeployed": true,
+    "aiToolsUsageDays": 180,
+    "aiToolsUsed": ["GitHub Copilot", "Cursor IDE", "ChatGPT"]
+  },
+  "responses": [
+    {
+      "responseId": "resp-001",
+      "submittedAt": "2025-09-30T09:15:23Z",
+      "demographics": {
+        "seniority": "Senior",
+        "tenureMonths": 36,
+        "usesCopilot": true,
+        "copilotUsageHoursPerWeek": 35
+      },
+      "likertScores": {
+        "P1_overall_satisfaction": 5,
+        "P2_tools_quality": 5,
+        "P3_autonomy": 5,
+        "P4_learning_opportunities": 5,
+        "P5_workload_balance": 4,
+        "P6_team_support": 5,
+        "P7_productivity_perception": 5,
+        "P8_collaboration_quality": 4,
+        "P9_work_life_balance": 4
+      },
+      "nps": 10,
+      "openEndedResponses": {
+        "P11_most_positive": "GitHub Copilot ha transformado completamente mi productividad. El boilerplate de Flutter que antes tomaba horas ahora se genera en segundos.",
+        "P12_most_frustrating": "A veces Copilot sugiere código desactualizado o no alineado con nuestros patterns. Necesitamos mejores guidelines.",
+        "P13_improvement_suggestions": "Más training sobre cómo usar IA efectivamente para debugging y refactoring, no solo para escribir código nuevo."
+      },
+      "controlVariables": {
+        "P14_salary_change": false,
+        "P15_role_change": false,
+        "P16_manager_change": false
+      }
+    },
+    {
+      "responseId": "resp-002",
+      "submittedAt": "2025-09-30T10:22:45Z",
+      "demographics": {
+        "seniority": "Mid",
+        "tenureMonths": 18,
+        "usesCopilot": true,
+        "copilotUsageHoursPerWeek": 30
+      },
+      "likertScores": {
+        "P1_overall_satisfaction": 4,
+        "P2_tools_quality": 5,
+        "P3_autonomy": 4,
+        "P4_learning_opportunities": 5,
+        "P5_workload_balance": 3,
+        "P6_team_support": 4,
+        "P7_productivity_perception": 5,
+        "P8_collaboration_quality": 4,
+        "P9_work_life_balance": 3
+      },
+      "nps": 9,
+      "openEndedResponses": {
+        "P11_most_positive": "Copilot me ayuda a aprender nuevos patterns al sugerir código que no hubiera pensado por mi cuenta.",
+        "P12_most_frustrating": "Carga de trabajo sigue siendo alta a pesar de las herramientas. Necesitamos mejor planning.",
+        "P13_improvement_suggestions": "Reducir meetings y dar más tiempo para deep work con las nuevas herramientas."
+      },
+      "controlVariables": {
+        "P14_salary_change": false,
+        "P15_role_change": false,
+        "P16_manager_change": false
+      }
+    },
+    {
+      "responseId": "resp-003",
+      "submittedAt": "2025-09-30T11:05:12Z",
+      "demographics": {
+        "seniority": "Junior",
+        "tenureMonths": 8,
+        "usesCopilot": true,
+        "copilotUsageHoursPerWeek": 25
+      },
+      "likertScores": {
+        "P1_overall_satisfaction": 4,
+        "P2_tools_quality": 4,
+        "P3_autonomy": 3,
+        "P4_learning_opportunities": 5,
+        "P5_workload_balance": 4,
+        "P6_team_support": 5,
+        "P7_productivity_perception": 4,
+        "P8_collaboration_quality": 5,
+        "P9_work_life_balance": 4
+      },
+      "nps": 8,
+      "openEndedResponses": {
+        "P11_most_positive": "Como junior, Copilot me permite contribuir mucho más rápido que en mi anterior trabajo sin IA.",
+        "P12_most_frustrating": "A veces me siento dependiente de Copilot y no sé si estoy aprendiendo lo suficiente 'de verdad'.",
+        "P13_improvement_suggestions": "Más pair programming con seniors para complementar el uso de IA y validar que estoy aprendiendo correctamente."
+      },
+      "controlVariables": {
+        "P14_salary_change": false,
+        "P15_role_change": true,
+        "P16_manager_change": false
+      }
+    },
+    {
+      "responseId": "resp-004",
+      "submittedAt": "2025-09-30T13:30:56Z",
+      "demographics": {
+        "seniority": "Senior",
+        "tenureMonths": 48,
+        "usesCopilot": false,
+        "copilotUsageHoursPerWeek": 0
+      },
+      "likertScores": {
+        "P1_overall_satisfaction": 3,
+        "P2_tools_quality": 2,
+        "P3_autonomy": 4,
+        "P4_learning_opportunities": 3,
+        "P5_workload_balance": 2,
+        "P6_team_support": 3,
+        "P7_productivity_perception": 2,
+        "P8_collaboration_quality": 4,
+        "P9_work_life_balance": 3
+      },
+      "nps": 6,
+      "openEndedResponses": {
+        "P11_most_positive": "El equipo tiene buena comunicación y colaboración, independiente de las herramientas.",
+        "P12_most_frustrating": "No estoy convencido del valor de Copilot. Prefiero escribir código yo mismo para mantener control total.",
+        "P13_improvement_suggestions": "Respetar que algunos developers prefieren no usar IA y no presionar su adopción."
+      },
+      "controlVariables": {
+        "P14_salary_change": false,
+        "P15_role_change": false,
+        "P16_manager_change": false
+      }
+    },
+    {
+      "responseId": "resp-005",
+      "submittedAt": "2025-09-30T14:12:33Z",
+      "demographics": {
+        "seniority": "Mid",
+        "tenureMonths": 24,
+        "usesCopilot": true,
+        "copilotUsageHoursPerWeek": 38
+      },
+      "likertScores": {
+        "P1_overall_satisfaction": 5,
+        "P2_tools_quality": 5,
+        "P3_autonomy": 5,
+        "P4_learning_opportunities": 4,
+        "P5_workload_balance": 4,
+        "P6_team_support": 5,
+        "P7_productivity_perception": 5,
+        "P8_collaboration_quality": 5,
+        "P9_work_life_balance": 4
+      },
+      "nps": 10,
+      "openEndedResponses": {
+        "P11_most_positive": "La combinación de Flutter + Copilot es increíble. Puedo hacer features en 1/3 del tiempo que antes.",
+        "P12_most_frustrating": "Nada significativo - muy satisfecho con el stack actual.",
+        "P13_improvement_suggestions": "Compartir más best practices de cómo el equipo está usando Copilot efectivamente."
+      },
+      "controlVariables": {
+        "P14_salary_change": false,
+        "P15_role_change": false,
+        "P16_manager_change": false
+      }
+    },
+    {
+      "responseId": "resp-006",
+      "submittedAt": "2025-09-30T15:45:18Z",
+      "demographics": {
+        "seniority": "Junior",
+        "tenureMonths": 4,
+        "usesCopilot": true,
+        "copilotUsageHoursPerWeek": 32
+      },
+      "likertScores": {
+        "P1_overall_satisfaction": 4,
+        "P2_tools_quality": 5,
+        "P3_autonomy": 3,
+        "P4_learning_opportunities": 5,
+        "P5_workload_balance": 3,
+        "P6_team_support": 4,
+        "P7_productivity_perception": 4,
+        "P8_collaboration_quality": 4,
+        "P9_work_life_balance": 3
+      },
+      "nps": 8,
+      "openEndedResponses": {
+        "P11_most_positive": "Onboarding fue mucho más fácil con Copilot. Pude ser productivo en semanas en vez de meses.",
+        "P12_most_frustrating": "A veces no entiendo por qué Copilot sugiere cierto código y me da miedo usarlo sin entender.",
+        "P13_improvement_suggestions": "Documentación interna sobre patterns de Flutter que usa el equipo para configurar Copilot mejor."
+      },
+      "controlVariables": {
+        "P14_salary_change": false,
+        "P15_role_change": false,
+        "P16_manager_change": false
+      }
+    }
+  ],
+  "aggregatedResults": {
+    "satisfactionScore": {
+      "mean": 4.18,
+      "median": 4.22,
+      "stdDev": 0.61,
+      "min": 2.89,
+      "max": 4.78,
+      "classification": "excelente"
+    },
+    "nps": {
+      "score": 53,
+      "promoters": 10,
+      "promotersPercentage": 58.8,
+      "passives": 5,
+      "passivesPercentage": 29.4,
+      "detractors": 2,
+      "detractorsPercentage": 11.8,
+      "classification": "excelente"
+    },
+    "participationRate": {
+      "percentage": 85.0,
+      "classification": "excelente"
+    },
+    "scoresByQuestion": {
+      "P1_overall_satisfaction": {"mean": 4.12, "stdDev": 0.70},
+      "P2_tools_quality": {"mean": 4.47, "stdDev": 0.94},
+      "P3_autonomy": {"mean": 4.06, "stdDev": 0.75},
+      "P4_learning_opportunities": {"mean": 4.59, "stdDev": 0.62},
+      "P5_workload_balance": {"mean": 3.35, "stdDev": 0.70},
+      "P6_team_support": {"mean": 4.35, "stdDev": 0.70},
+      "P7_productivity_perception": {"mean": 4.29, "stdDev": 1.05},
+      "P8_collaboration_quality": {"mean": 4.29, "stdDev": 0.47},
+      "P9_work_life_balance": {"mean": 3.53, "stdDev": 0.51}
+    },
+    "correlationAnalysis": {
+      "highestCorrelations": [
+        {
+          "question": "P4_learning_opportunities",
+          "correlationWithP1": 0.912,
+          "pValue": 0.011,
+          "significant": true,
+          "interpretation": "Learning opportunities es el factor más importante para satisfacción general"
+        },
+        {
+          "question": "P2_tools_quality",
+          "correlationWithP1": 0.867,
+          "pValue": 0.026,
+          "significant": true,
+          "interpretation": "Calidad de herramientas (incluyendo Copilot) tiene impacto muy significativo"
+        },
+        {
+          "question": "P7_productivity_perception",
+          "correlationWithP1": 0.805,
+          "pValue": 0.053,
+          "significant": false,
+          "interpretation": "Percepción de productividad correlaciona fuerte pero no significativamente (muestra pequeña)"
+        }
+      ]
+    },
+    "segmentAnalysis": {
+      "bySeniority": {
+        "Senior": {"mean": 4.17, "count": 7, "nps": 57},
+        "Mid": {"mean": 4.42, "count": 6, "nps": 67},
+        "Junior": {"mean": 3.96, "count": 4, "nps": 38}
+      },
+      "byCopilotUsage": {
+        "users": {"mean": 4.38, "count": 15, "nps": 60},
+        "nonUsers": {"mean": 2.89, "count": 2, "nps": 0},
+        "deltaPercentage": 51.6,
+        "interpretation": "Usuarios de Copilot tienen +52% mayor satisfacción"
+      },
+      "byTenure": {
+        "new_lt6m": {"mean": 3.89, "count": 2},
+        "veteran_gt6m": {"mean": 4.23, "count": 15}
+      }
+    },
+    "qualitativeThemes": {
+      "mostPositive": {
+        "Productividad con IA": 12,
+        "Learning y crecimiento": 8,
+        "Herramientas modernas": 7,
+        "Team collaboration": 5
+      },
+      "mostFrustrating": {
+        "Carga de trabajo alta": 6,
+        "Dependencia de IA (juniors)": 4,
+        "Calidad de sugerencias IA": 3,
+        "Falta de documentación": 2,
+        "Skepticismo sobre IA": 2
+      },
+      "improvements": {
+        "Training sobre uso efectivo de IA": 8,
+        "Mejor documentación interna": 6,
+        "Reducir meetings": 4,
+        "Guidelines de IA": 3
+      }
+    },
+    "controlVariablesImpact": {
+      "responsesWithChanges": 1,
+      "responsesWithoutChanges": 16,
+      "meanSatisfactionClean": 4.21,
+      "meanSatisfactionAll": 4.18,
+      "impactOfChanges": "minimal",
+      "interpretation": "Mejoras NO afectadas significativamente por cambios organizacionales"
+    }
+  },
+  "comparisonWithBaseline": {
+    "baselineSurvey": {
+      "surveyId": "satisfaction-q1-2025",
+      "quarter": "Q1 2025",
+      "conductedDate": "2025-03-31",
+      "satisfactionScore": 3.2,
+      "nps": 15,
+      "aiToolsDeployed": false
+    },
+    "improvements": {
+      "satisfactionScoreDelta": 0.98,
+      "satisfactionScoreImprovementPct": 30.6,
+      "npsDelta": 38,
+      "timeElapsedDays": 183,
+      "interpretation": "Mejora dramática en satisfacción (+31%) y NPS (+38 pts) después de 6 meses con IA"
+    },
+    "metGoals": {
+      "satisfactionScoreGoal": 4.5,
+      "satisfactionScoreProgress": 92.9,
+      "npsGoal": 50,
+      "npsProgress": 106.0,
+      "metNpsGoal": true,
+      "almostMetSatisfactionGoal": true
+    }
+  },
+  "trendAnalysis": {
+    "quarterlyScores": [
+      {"quarter": "Q1 2025", "score": 3.2, "nps": 15, "baseline": true},
+      {"quarter": "Q2 2025", "score": 3.8, "nps": 32, "baseline": false},
+      {"quarter": "Q3 2025", "score": 4.18, "nps": 53, "baseline": false}
+    ],
+    "trend": "improving",
+    "velocityPerQuarter": 11.5,
+    "projectionQ4": 4.66,
+    "interpretation": "Tendencia POSITIVA consistente - satisfacción aumentando +11.5%/quarter"
+  },
+  "actionPlan": {
+    "prioritizedActions": [
+      {
+        "priority": 1,
+        "action": "Implementar training program sobre uso efectivo de IA",
+        "reach": 100,
+        "impact": 5,
+        "confidence": 90,
+        "effort": 2,
+        "riceScore": 225.0,
+        "category": "quick_win"
+      },
+      {
+        "priority": 2,
+        "action": "Crear guidelines internas de Copilot + Flutter patterns",
+        "reach": 100,
+        "impact": 3,
+        "confidence": 95,
+        "effort": 3,
+        "riceScore": 95.0,
+        "category": "high_impact_low_effort"
+      },
+      {
+        "priority": 3,
+        "action": "Reducir workload (P5) con mejor planning",
+        "reach": 100,
+        "impact": 4,
+        "confidence": 70,
+        "effort": 8,
+        "riceScore": 35.0,
+        "category": "medium_priority"
+      },
+      {
+        "priority": 4,
+        "action": "Mejorar work-life balance (P9) con flexible hours",
+        "reach": 100,
+        "impact": 3,
+        "confidence": 80,
+        "effort": 5,
+        "riceScore": 48.0,
+        "category": "medium_priority"
+      }
+    ]
+  },
+  "recommendations": [
+    "NPS de 53 es EXCELENTE - mantener momentum con continuous training",
+    "Usuarios de Copilot +52% más satisfechos - considerar hacer obligatorio su uso",
+    "Juniors expresan dependencia de IA - implementar pair programming con seniors",
+    "P5 (workload) y P9 (work-life balance) son los scores más bajos - priorizar mejoras",
+    "Proyección Q4 2025: Score 4.66 superaría meta de 4.5 - on track para éxito"
+  ]
+}

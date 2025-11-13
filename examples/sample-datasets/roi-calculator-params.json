@@ -1,0 +1,349 @@
+{
+  "$schema": "../../docs/frameworks/ai-impact-observability/schemas/roi-calculator-api.json",
+  "metadata": {
+    "calculatorVersion": "1.0.0",
+    "framework": "AI Impact Observability - ROI Calculator",
+    "generatedAt": "2025-11-13T10:00:00Z",
+    "description": "Parámetros ejemplo para calculadora ROI de IA en equipos Flutter",
+    "usageNote": "Estos parámetros pueden cargarse en web-calculator/index.html para obtener cálculos instantáneos"
+  },
+  "scenarios": [
+    {
+      "scenarioId": "base-20-devs",
+      "scenarioName": "Equipo Base - 20 Developers",
+      "description": "Escenario típico de equipo mediano con GitHub Copilot Business",
+      "parameters": {
+        "teamSize": 20,
+        "avgSalaryAnnual": 150000,
+        "toolCostMonthly": 39,
+        "toolName": "GitHub Copilot Business",
+        "improvements": {
+          "boilerplateReduction": 60,
+          "onboardingReduction": 50,
+          "crashReduction": 30,
+          "cycleTimeReduction": 40,
+          "turnoverReduction": 28
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 9360,
+        "annualSavings": 779066,
+        "roiPercentage": 8222,
+        "paybackDays": 4.4,
+        "npv3Years": 1914146,
+        "costOfInaction": 1461000
+      }
+    },
+    {
+      "scenarioId": "small-team-5-devs",
+      "scenarioName": "Startup - 5 Developers",
+      "description": "Equipo pequeño con presupuesto limitado usando Cursor",
+      "parameters": {
+        "teamSize": 5,
+        "avgSalaryAnnual": 120000,
+        "toolCostMonthly": 20,
+        "toolName": "Cursor IDE",
+        "improvements": {
+          "boilerplateReduction": 55,
+          "onboardingReduction": 45,
+          "crashReduction": 25,
+          "cycleTimeReduction": 37,
+          "turnoverReduction": 26
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 1200,
+        "annualSavings": 142890,
+        "roiPercentage": 11808,
+        "paybackDays": 3.1,
+        "npv3Years": 351273,
+        "costOfInaction": 292200
+      }
+    },
+    {
+      "scenarioId": "large-team-50-devs",
+      "scenarioName": "Enterprise - 50 Developers",
+      "description": "Equipo grande con alto costo de inacción",
+      "parameters": {
+        "teamSize": 50,
+        "avgSalaryAnnual": 180000,
+        "toolCostMonthly": 39,
+        "toolName": "GitHub Copilot Business",
+        "improvements": {
+          "boilerplateReduction": 65,
+          "onboardingReduction": 55,
+          "crashReduction": 35,
+          "cycleTimeReduction": 44,
+          "turnoverReduction": 31
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 23400,
+        "annualSavings": 2634881,
+        "roiPercentage": 11156,
+        "paybackDays": 3.2,
+        "npv3Years": 6474542,
+        "costOfInaction": 4387800
+      }
+    },
+    {
+      "scenarioId": "conservative-scenario",
+      "scenarioName": "Escenario Conservador",
+      "description": "Mejoras 50% menores que estudios para análisis de riesgo",
+      "parameters": {
+        "teamSize": 20,
+        "avgSalaryAnnual": 150000,
+        "toolCostMonthly": 39,
+        "toolName": "GitHub Copilot Business",
+        "improvements": {
+          "boilerplateReduction": 30,
+          "onboardingReduction": 25,
+          "crashReduction": 15,
+          "cycleTimeReduction": 20,
+          "turnoverReduction": 14
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 9360,
+        "annualSavings": 389533,
+        "roiPercentage": 4061,
+        "paybackDays": 8.8,
+        "npv3Years": 957073,
+        "costOfInaction": 1461000
+      }
+    },
+    {
+      "scenarioId": "optimistic-scenario",
+      "scenarioName": "Escenario Optimista",
+      "description": "Mejoras en el extremo superior reportado en estudios",
+      "parameters": {
+        "teamSize": 20,
+        "avgSalaryAnnual": 150000,
+        "toolCostMonthly": 39,
+        "toolName": "GitHub Copilot Business",
+        "improvements": {
+          "boilerplateReduction": 75,
+          "onboardingReduction": 63,
+          "crashReduction": 38,
+          "cycleTimeReduction": 50,
+          "turnoverReduction": 35
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 9360,
+        "annualSavings": 973833,
+        "roiPercentage": 10303,
+        "paybackDays": 3.5,
+        "npv3Years": 2392683,
+        "costOfInaction": 1461000
+      }
+    },
+    {
+      "scenarioId": "international-india",
+      "scenarioName": "Equipo en India",
+      "description": "Salarios menores pero IA sigue siendo rentable",
+      "parameters": {
+        "teamSize": 20,
+        "avgSalaryAnnual": 50000,
+        "toolCostMonthly": 39,
+        "toolName": "GitHub Copilot Business",
+        "improvements": {
+          "boilerplateReduction": 60,
+          "onboardingReduction": 50,
+          "crashReduction": 30,
+          "cycleTimeReduction": 40,
+          "turnoverReduction": 28
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 9360,
+        "annualSavings": 259689,
+        "roiPercentage": 2674,
+        "paybackDays": 13.2,
+        "npv3Years": 638049,
+        "costOfInaction": 487000
+      }
+    },
+    {
+      "scenarioId": "bay-area-high-salary",
+      "scenarioName": "Bay Area - Salarios Altos",
+      "description": "Costos altos hacen que IA sea AÚN más rentable",
+      "parameters": {
+        "teamSize": 20,
+        "avgSalaryAnnual": 250000,
+        "toolCostMonthly": 39,
+        "toolName": "GitHub Copilot Business",
+        "improvements": {
+          "boilerplateReduction": 60,
+          "onboardingReduction": 50,
+          "crashReduction": 30,
+          "cycleTimeReduction": 40,
+          "turnoverReduction": 28
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 9360,
+        "annualSavings": 1298443,
+        "roiPercentage": 13770,
+        "paybackDays": 2.6,
+        "npv3Years": 3190243,
+        "costOfInaction": 2435000
+      }
+    },
+    {
+      "scenarioId": "free-tool-codewhisperer",
+      "scenarioName": "Herramienta Gratuita - CodeWhisperer",
+      "description": "ROI infinito con herramienta gratuita (features limitados)",
+      "parameters": {
+        "teamSize": 20,
+        "avgSalaryAnnual": 150000,
+        "toolCostMonthly": 0,
+        "toolName": "AWS CodeWhisperer (Free Tier)",
+        "improvements": {
+          "boilerplateReduction": 40,
+          "onboardingReduction": 30,
+          "crashReduction": 20,
+          "cycleTimeReduction": 27,
+          "turnoverReduction": 19
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 0,
+        "annualSavings": 519377,
+        "roiPercentage": null,
+        "roiNote": "Infinito (inversión $0)",
+        "paybackDays": 0,
+        "npv3Years": 1276423,
+        "costOfInaction": 1461000
+      }
+    },
+    {
+      "scenarioId": "partial-adoption-50pct",
+      "scenarioName": "Adopción Parcial - 50% del Equipo",
+      "description": "Piloto con la mitad del equipo para validación",
+      "parameters": {
+        "teamSize": 10,
+        "avgSalaryAnnual": 150000,
+        "toolCostMonthly": 39,
+        "toolName": "GitHub Copilot Business (Pilot)",
+        "improvements": {
+          "boilerplateReduction": 60,
+          "onboardingReduction": 50,
+          "crashReduction": 30,
+          "cycleTimeReduction": 40,
+          "turnoverReduction": 28
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 4680,
+        "annualSavings": 389533,
+        "roiPercentage": 8222,
+        "paybackDays": 4.4,
+        "npv3Years": 957073,
+        "costOfInaction": 730500,
+        "note": "ROI % idéntico al escenario completo - valida escalabilidad"
+      }
+    },
+    {
+      "scenarioId": "custom-tool-expensive",
+      "scenarioName": "Herramienta Custom Cara ($100/mes)",
+      "description": "Incluso herramientas 2.5x más caras siguen siendo rentables",
+      "parameters": {
+        "teamSize": 20,
+        "avgSalaryAnnual": 150000,
+        "toolCostMonthly": 100,
+        "toolName": "Custom AI Solution",
+        "improvements": {
+          "boilerplateReduction": 60,
+          "onboardingReduction": 50,
+          "crashReduction": 30,
+          "cycleTimeReduction": 40,
+          "turnoverReduction": 28
+        }
+      },
+      "expectedResults": {
+        "annualInvestment": 24000,
+        "annualSavings": 779066,
+        "roiPercentage": 3146,
+        "paybackDays": 11.3,
+        "npv3Years": 1855146,
+        "costOfInaction": 1461000
+      }
+    }
+  ],
+  "baselineConstants": {
+    "description": "Constantes de baseline usadas en todos los cálculos",
+    "hoursPerYear": 2080,
+    "monthsPerYear": 12,
+    "daysPerYear": 365,
+    "discountRate": 0.10,
+    "baselineHoursPerDeveloper": {
+      "boilerplate": 728,
+      "onboarding": 168,
+      "crashes": 120,
+      "cycleTime": 83,
+      "turnover": 108
+    },
+    "sources": [
+      "GitHub Copilot Impact Study (2022) - 40,000+ developers",
+      "Accenture Generative AI Study (2023) - 3,000+ developers",
+      "DORA State of DevOps Reports (2018-2024)",
+      "Flutter Time Tracking Analysis (2023-2024)"
+    ]
+  },
+  "usageInstructions": {
+    "webCalculator": "Abrir web-calculator/index.html y ajustar sliders manualmente",
+    "api": "POST estos parámetros a endpoint /api/calculate-roi (si backend existe)",
+    "validation": "Validar contra schemas/roi-calculator-api.json",
+    "export": "Usar botón 'Exportar Resultados' en calculadora para TXT"
+  },
+  "recommendedWorkflow": [
+    "1. Leer escenarios de ejemplo para familiarizarse con ranges típicos",
+    "2. Identificar escenario más cercano a tu situación (teamSize + avgSalary)",
+    "3. Abrir web-calculator/index.html",
+    "4. Ajustar parámetros para tu equipo específico",
+    "5. Exportar resultados para incluir en business case",
+    "6. Ejecutar piloto de 90 días para validar proyecciones",
+    "7. Remedir y ajustar % mejoras basado en datos reales"
+  ],
+  "validationRules": {
+    "teamSize": {
+      "min": 1,
+      "max": 100,
+      "recommended": "5-50 para equipos Flutter típicos"
+    },
+    "avgSalaryAnnual": {
+      "min": 50000,
+      "max": 300000,
+      "note": "Incluir solo salario base, no beneficios (se calculan por separado)"
+    },
+    "toolCostMonthly": {
+      "min": 0,
+      "max": 100,
+      "note": "Costo por developer, no costo total del equipo"
+    },
+    "improvements": {
+      "boilerplateReduction": {
+        "min": 0,
+        "max": 100,
+        "conservative": 30,
+        "base": 60,
+        "optimistic": 75
+      },
+      "onboardingReduction": {
+        "min": 0,
+        "max": 100,
+        "conservative": 25,
+        "base": 50,
+        "optimistic": 63
+      },
+      "crashReduction": {
+        "min": 0,
+        "max": 100,
+        "conservative": 15,
+        "base": 30,
+        "optimistic": 38
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "../../docs/frameworks/ai-impact-observability/schemas/metrics-schema.json",
+  "metrics": [
+    {
+      "id": "DORA-LT-001",
+      "categoria": "DORA_LEAD_TIME",
+      "nombre": "Lead Time para Cambios (Commit → App Store Aprobada)",
+      "descripcion": "Tiempo desde commit de código hasta app disponible en tiendas (App Store + Play Store).",
+      "adaptacionFlutter": "En Flutter, Lead Time incluye compilación AOT/JIT para 2 plataformas (iOS 10-20min, Android 8-18min) + revisión de tiendas (App Store 24-48h, Play Store 2-8h). Es 10-20x más lento que deploys web debido a restricciones de tiendas.",
+      "metodoMedicion": {
+        "id": "MET-GIT-001",
+        "herramienta": "Git + App Store Connect API + Google Play Console API",
+        "comandos": "git log --since='30 days ago' --pretty=format:'%H,%ct,%s' --no-merges | calcular diff con timestamp de approval en tiendas",
+        "frecuencia": "PER_COMMIT"
+      },
+      "baselineComun": {
+        "valor": 12,
+        "unidad": "días"
+      },
+      "targetConIA": {
+        "valor": 7,
+        "unidad": "días"
+      },
+      "impactoEsperado": 42,
+      "criticidadFlutter": "CRÍTICA",
+      "relacionesKPI": ["KPI-004"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    },
+    {
+      "id": "SPACE-EFF-001",
+      "categoria": "SPACE_EFFICIENCY",
+      "nombre": "Tiempo de Build en CI (Flutter Multiplataforma)",
+      "descripcion": "Tiempo promedio desde push de código hasta disponibilidad de artefactos compilados para Android e iOS en pipeline de CI/CD.",
+      "adaptacionFlutter": "Flutter requiere compilación AOT para iOS (10-20 min) y JIT/AOT para Android (8-18 min). A diferencia de desarrollo web (segundos), los builds lentos causan context switching significativo y reducción de flow state. Hot reload mitiga esto en desarrollo local, pero CI builds siguen siendo críticos para testing y releases.",
+      "metodoMedicion": {
+        "id": "MET-CI-001",
+        "herramienta": "GitHub Actions / Bitrise / Codemagic",
+        "comandos": "gh run list --workflow='ci.yml' --limit 50 --json conclusion,durationMs | jq '[.[] | select(.conclusion==\"success\") | .durationMs] | add/length/60000'",
+        "frecuencia": "PER_BUILD"
+      },
+      "baselineComun": {
+        "valor": 15.8,
+        "unidad": "minutos"
+      },
+      "targetConIA": {
+        "valor": 13.4,
+        "unidad": "minutos"
+      },
+      "impactoEsperado": 15,
+      "criticidadFlutter": "ALTA",
+      "relacionesKPI": ["KPI-002"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    },
+    {
+      "id": "SPACE-ACT-002",
+      "categoria": "SPACE_ACTIVITY",
+      "nombre": "Onboarding Time (Tiempo de Incorporación)",
+      "descripcion": "Días hasta que un developer nuevo es productivo al 70-80% del nivel de un miembro senior del equipo.",
+      "adaptacionFlutter": "Onboarding en Flutter incluye aprender: Dart language, Flutter widget system, state management (Provider/BLoC/Riverpod), navigation, platform specifics (iOS vs Android), testing (widget tests, integration tests), y build/deployment (FastLane, app signing, tiendas). Curva de aprendizaje más empinada que frameworks web.",
+      "metodoMedicion": {
+        "id": "MET-HR-001",
+        "herramienta": "Tracking manual en spreadsheet o HR system",
+        "comandos": "Registrar fecha de inicio y fecha de productividad (completar milestone 3: contribución a feature mediana con mínima ayuda) para cada nueva contratación. Calcular promedio de últimas 5-10 contrataciones.",
+        "frecuencia": "PER_NEW_HIRE"
+      },
+      "baselineComun": {
+        "valor": 42,
+        "unidad": "días"
+      },
+      "targetConIA": {
+        "valor": 21,
+        "unidad": "días"
+      },
+      "impactoEsperado": 50,
+      "criticidadFlutter": "CRÍTICA",
+      "relacionesKPI": ["KPI-001"],
+      "fechaCreacion": "2025-11-13T00:00:00Z",
+      "versionFramework": "1.0.0"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-11-13T00:00:00Z",
+    "description": "Ejemplos de 3 métricas del Framework de Observabilidad del Impacto de IA para Flutter: 1 DORA (Lead Time), 2 SPACE (Build Time en CI, Onboarding Time). Estas métricas son representativas de las categorías más críticas para equipos Flutter.",
+    "teamSizeExample": 20,
+    "salarioPromedioExample": 150000,
+    "notes": [
+      "Los valores baseline y target son promedios de industria basados en encuestas y DORA reports",
+      "El impacto esperado de IA (%) está basado en GitHub Copilot Impact Study (2022) y estudios académicos",
+      "Estos JSONs son validados contra schemas/metrics-schema.json"
+    ]
+  }
+}

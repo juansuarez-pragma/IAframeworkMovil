@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://framework.ai-impact-observability/schemas/metrica-dora-space.json",
+  "title": "Métrica DORA/SPACE",
+  "description": "Schema para métricas de observabilidad del impacto de IA en desarrollo Flutter",
+  "type": "object",
+  "required": [
+    "id",
+    "categoria",
+    "nombre",
+    "descripcion",
+    "adaptacionFlutter",
+    "metodoMedicion",
+    "impactoEsperado",
+    "criticidadFlutter",
+    "fechaCreacion",
+    "versionFramework"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(DORA|SPACE)-[A-Z]+-[0-9]{3}$",
+      "description": "Identificador único en formato [DORA|SPACE]-[CÓDIGO]-[###]",
+      "examples": ["DORA-LT-001", "SPACE-EFF-001"]
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "DORA_LEAD_TIME",
+        "DORA_DEPLOY_FREQ",
+        "DORA_CFR",
+        "DORA_MTTR",
+        "SPACE_SATISFACTION",
+        "SPACE_PERFORMANCE",
+        "SPACE_ACTIVITY",
+        "SPACE_COMMUNICATION",
+        "SPACE_EFFICIENCY"
+      ],
+      "description": "Categoría DORA o dimensión SPACE"
+    },
+    "nombre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Nombre descriptivo de la métrica"
+    },
+    "descripcion": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Explicación de qué mide esta métrica"
+    },
+    "adaptacionFlutter": {
+      "type": "string",
+      "maxLength": 1000,
+      "pattern": ".*(Flutter|Dart|Widget|hot reload|AOT|JIT|iOS|Android).*",
+      "description": "Cómo esta métrica es única o crítica en Flutter (debe mencionar conceptos Flutter-específicos)"
+    },
+    "metodoMedicion": {
+      "type": "object",
+      "required": ["id", "herramienta", "frecuencia"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^MET-[A-Z]+-[0-9]{3}$"
+        },
+        "herramienta": {
+          "type": "string",
+          "examples": ["Git", "Firebase Crashlytics", "Jira"]
+        },
+        "comandos": {
+          "type": "string",
+          "description": "Comandos o queries específicos para extraer datos"
+        },
+        "frecuencia": {
+          "type": "string",
+          "enum": ["PER_COMMIT", "PER_BUILD", "DAILY", "WEEKLY", "MONTHLY", "QUARTERLY"]
+        }
+      }
+    },
+    "baselineComun": {
+      "type": "object",
+      "properties": {
+        "valor": {
+          "oneOf": [
+            { "type": "number" },
+            { "type": "string" }
+          ]
+        },
+        "unidad": {
+          "type": "string",
+          "examples": ["días", "minutos", "porcentaje", "story points"]
+        }
+      },
+      "required": ["valor", "unidad"]
+    },
+    "targetConIA": {
+      "type": "object",
+      "properties": {
+        "valor": {
+          "oneOf": [
+            { "type": "number" },
+            { "type": "string" }
+          ]
+        },
+        "unidad": {
+          "type": "string"
+        }
+      },
+      "required": ["valor", "unidad"]
+    },
+    "impactoEsperado": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Porcentaje de mejora proyectado con adopción de IA"
+    },
+    "criticidadFlutter": {
+      "type": "string",
+      "enum": ["BAJA", "MEDIA", "ALTA", "CRÍTICA"],
+      "description": "Qué tan crítica es esta métrica para Flutter vs otras plataformas"
+    },
+    "relacionesKPI": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^KPI-[0-9]{3}$"
+      },
+      "description": "IDs de KPIs ejecutivos que dependen de esta métrica"
+    },
+    "fechaCreacion": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp ISO 8601 de cuándo se agregó esta métrica"
+    },
+    "versionFramework": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Versión del framework en formato SemVer",
+      "examples": ["1.0.0", "1.2.3"]
+    }
+  },
+  "additionalProperties": false
+}

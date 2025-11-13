@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://framework.ai-impact-observability/schemas/calculadora-roi.json",
+  "title": "Calculadora de ROI",
+  "description": "Schema para calculadoras de retorno de inversión de herramientas de IA",
+  "type": "object",
+  "required": [
+    "id",
+    "nombre",
+    "parametrosEntrada",
+    "formulasCalculo",
+    "outputsEsperados",
+    "valoresDefault"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^CALC-[A-Z]+-[0-9]{3}$",
+      "description": "Identificador único en formato CALC-[TIPO]-[###]",
+      "examples": ["CALC-ROI-001"]
+    },
+    "nombre": {
+      "type": "string",
+      "description": "Nombre descriptivo de la calculadora",
+      "examples": ["Calculadora de ROI para Adopción de GitHub Copilot"]
+    },
+    "descripcion": {
+      "type": "string",
+      "description": "Explicación de qué calcula y para qué casos de uso"
+    },
+    "parametrosEntrada": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "tipo", "unidad", "default"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
+            "description": "Identificador camelCase del parámetro"
+          },
+          "label": {
+            "type": "string",
+            "description": "Etiqueta visible para el usuario"
+          },
+          "tipo": {
+            "type": "string",
+            "enum": ["Number", "String", "Boolean", "Select"],
+            "description": "Tipo de dato del input"
+          },
+          "unidad": {
+            "type": "string",
+            "description": "Unidad de medida",
+            "examples": ["developers", "USD", "USD/mes", "porcentaje"]
+          },
+          "min": {
+            "type": "number",
+            "description": "Valor mínimo permitido (solo para tipo Number)"
+          },
+          "max": {
+            "type": "number",
+            "description": "Valor máximo permitido (solo para tipo Number)"
+          },
+          "default": {
+            "oneOf": [
+              { "type": "number" },
+              { "type": "string" },
+              { "type": "boolean" }
+            ],
+            "description": "Valor pre-cargado por defecto"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Tooltip o ayuda explicativa"
+          },
+          "opciones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["valor", "etiqueta"],
+              "properties": {
+                "valor": {
+                  "oneOf": [
+                    { "type": "number" },
+                    { "type": "string" }
+                  ]
+                },
+                "etiqueta": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Opciones para tipo Select"
+          }
+        }
+      }
+    },
+    "formulasCalculo": {
+      "type": "object",
+      "required": ["roi", "payback"],
+      "properties": {
+        "inversionAnual": {
+          "type": "string",
+          "description": "Fórmula para calcular inversión anual total"
+        },
+        "ahorroAnual": {
+          "type": "string",
+          "description": "Fórmula para calcular ahorro anual total"
+        },
+        "roi": {
+          "type": "string",
+          "description": "Fórmula para ROI en porcentaje"
+        },
+        "payback": {
+          "type": "string",
+          "description": "Fórmula para payback period en días"
+        },
+        "npv": {
+          "type": "string",
+          "description": "Fórmula para Net Present Value (3 años típicamente)"
+        }
+      },
+      "additionalProperties": {
+        "type": "string",
+        "description": "Fórmulas adicionales específicas del caso de uso"
+      }
+    },
+    "outputsEsperados": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "tipo", "formato"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$",
+            "description": "Identificador camelCase del output"
+          },
+          "label": {
+            "type": "string",
+            "description": "Etiqueta visible para el resultado"
+          },
+          "tipo": {
+            "type": "string",
+            "enum": ["Number", "String"],
+            "description": "Tipo de dato del output"
+          },
+          "formato": {
+            "type": "string",
+            "enum": ["currency", "percentage", "days", "months", "years", "decimal", "integer"],
+            "description": "Formato de presentación del número"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Explicación del output para el usuario"
+          },
+          "destacado": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si este output debe mostrarse de forma prominente"
+          }
+        }
+      }
+    },
+    "valoresDefault": {
+      "type": "object",
+      "description": "Mapa de parametroId → valorDefault para caso típico",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "number" },
+          { "type": "string" },
+          { "type": "boolean" }
+        ]
+      }
+    },
+    "rangosSensibilidad": {
+      "type": "object",
+      "description": "Rangos para análisis 'qué pasa si'",
+      "properties": {
+        "descripcion": {
+          "type": "string",
+          "description": "Explicación de los escenarios de sensibilidad"
+        }
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "description": "Array de valores para el parámetro en análisis de sensibilidad"
+      }
+    },
+    "ejemploUso": {
+      "type": "object",
+      "description": "Ejemplo completo de entrada y salida esperada",
+      "properties": {
+        "inputs": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "expectedOutputs": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,316 @@
+{
+  "$schema": "../../docs/frameworks/ai-impact-observability/schemas/metrics-schema.json",
+  "metadata": {
+    "teamName": "Flutter Mobile Team",
+    "teamSize": 20,
+    "measurementPeriod": {
+      "start": "2025-07-01",
+      "end": "2025-09-30",
+      "label": "Q3 2025 Post-AI (90 días después)"
+    },
+    "aiToolsAdopted": true,
+    "aiTools": [
+      {
+        "name": "GitHub Copilot Business",
+        "costPerDevPerMonth": 39,
+        "adoptionDate": "2025-04-01",
+        "adoptionRate": 100,
+        "daysActive": 180
+      }
+    ],
+    "avgSalaryUSD": 150000,
+    "framework": "AI Impact Observability v1.0.0",
+    "comparisonBaseline": "team-baseline-metrics.json"
+  },
+  "doraMetrics": [
+    {
+      "id": "DORA-LT-001",
+      "nombre": "Lead Time para Cambios",
+      "categoria": "DORA_LEAD_TIME",
+      "valorMedido": 7.1,
+      "unidad": "días",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Git analytics - commits to production tags",
+      "muestraTamaño": 198,
+      "clasificacion": "elite",
+      "baseline": 12.3,
+      "mejora": -42.3,
+      "mejoraEsperada": -42,
+      "notas": "Alcanzó elite tier (<7 días)"
+    },
+    {
+      "id": "DORA-DF-001",
+      "nombre": "Deployment Frequency",
+      "categoria": "DORA_DEPLOYMENT_FREQUENCY",
+      "valorMedido": 2.5,
+      "unidad": "deployments/semana",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Git tags contados en últimos 6 meses",
+      "muestraTamaño": 52,
+      "clasificacion": "high",
+      "baseline": 1.2,
+      "mejora": 108.3,
+      "mejoraEsperada": 50,
+      "notas": "Superó expectativas - más features completadas"
+    },
+    {
+      "id": "DORA-CFR-001",
+      "nombre": "Change Failure Rate",
+      "categoria": "DORA_CHANGE_FAILURE_RATE",
+      "valorMedido": 24,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Firebase Crashlytics - deployments con crashes críticos en 24h",
+      "muestraTamaño": 17,
+      "clasificacion": "mejorable",
+      "baseline": 37.5,
+      "mejora": -36,
+      "mejoraEsperada": -35,
+      "notas": "Mejoró dramáticamente gracias a test coverage 85%"
+    },
+    {
+      "id": "DORA-MTTR-001",
+      "nombre": "Mean Time to Recover",
+      "categoria": "DORA_MTTR",
+      "valorMedido": 26,
+      "unidad": "horas",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Tracking manual de incidentes (últimos 10)",
+      "muestraTamaño": 10,
+      "clasificacion": "high",
+      "baseline": 42,
+      "mejora": -38.1,
+      "mejoraEsperada": -30,
+      "notas": "Debugging más rápido con IA"
+    }
+  ],
+  "spaceMetrics": [
+    {
+      "id": "SPACE-SAT-001",
+      "nombre": "Developer Satisfaction (NPS)",
+      "categoria": "SPACE_SATISFACTION",
+      "valorMedido": 52,
+      "unidad": "nps_score",
+      "fechaMedicion": "2025-09-15",
+      "metodologia": "Encuesta trimestral anónima",
+      "muestraTamaño": 19,
+      "desglose": {
+        "promoters": 12,
+        "passives": 5,
+        "detractors": 2,
+        "satisfactionScore": 4.3
+      },
+      "clasificacion": "excelente",
+      "baseline": 15,
+      "mejora": 37,
+      "mejoraEsperada": 38,
+      "notas": "Participation rate: 95% (19 de 20 developers)"
+    },
+    {
+      "id": "SPACE-SAT-002",
+      "nombre": "Turnover Rate",
+      "categoria": "SPACE_SATISFACTION",
+      "valorMedido": 18,
+      "unidad": "porcentaje_anual",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Proyección basada en Q1-Q3 2025",
+      "muestraTamaño": 20,
+      "baseline": 25,
+      "mejora": -28,
+      "mejoraEsperada": -28,
+      "notas": "0 resignations en Q2-Q3 (vs 2 baseline)"
+    },
+    {
+      "id": "SPACE-PERF-001",
+      "nombre": "Velocity (Story Points)",
+      "categoria": "SPACE_PERFORMANCE",
+      "valorMedido": 61,
+      "unidad": "story_points_per_sprint",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Jira - promedio últimos 6 sprints",
+      "muestraTamaño": 6,
+      "clasificacion": "mejorando",
+      "baseline": 48,
+      "mejora": 27.1,
+      "mejoraEsperada": 25,
+      "notas": "Sprint duration: 2 semanas (sin cambio)"
+    },
+    {
+      "id": "SPACE-ACT-001",
+      "nombre": "Code Review Time",
+      "categoria": "SPACE_ACTIVITY",
+      "valorMedido": 22,
+      "unidad": "horas",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "GitHub API - PR created to merged (últimos 50 PRs)",
+      "muestraTamaño": 50,
+      "clasificacion": "bueno",
+      "baseline": 36,
+      "mejora": -38.9,
+      "mejoraEsperada": -40,
+      "notas": "Código de mejor calidad = menos roundtrips"
+    },
+    {
+      "id": "SPACE-ACT-002",
+      "nombre": "Onboarding Time",
+      "categoria": "SPACE_ACTIVITY",
+      "valorMedido": 23,
+      "unidad": "días",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "2 nuevos developers onboarded en Q2-Q3",
+      "muestraTamaño": 2,
+      "clasificacion": "excelente",
+      "baseline": 42,
+      "mejora": -45.2,
+      "mejoraEsperada": -50,
+      "notas": "Juniors productivos en ~3 semanas vs 6 semanas"
+    },
+    {
+      "id": "SPACE-COMM-001",
+      "nombre": "Documentation Coverage",
+      "categoria": "SPACE_COMMUNICATION",
+      "valorMedido": 68,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "dartdoc --validate-links",
+      "muestraTamaño": 1847,
+      "baseline": 48,
+      "mejora": 41.7,
+      "mejoraEsperada": 25,
+      "notas": "Copilot escribe docstrings 5x más rápido"
+    },
+    {
+      "id": "SPACE-EFF-001",
+      "nombre": "Build Time en CI",
+      "categoria": "SPACE_EFFICIENCY",
+      "valorMedido": 15.1,
+      "unidad": "minutos",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "GitHub Actions - últimos 50 builds exitosos",
+      "muestraTamaño": 50,
+      "clasificacion": "bueno",
+      "baseline": 15.2,
+      "mejora": -0.7,
+      "mejoraEsperada": 0,
+      "notas": "Sin cambio esperado (IA no afecta build time)"
+    },
+    {
+      "id": "SPACE-EFF-002",
+      "nombre": "Tiempo en Boilerplate",
+      "categoria": "SPACE_EFFICIENCY",
+      "valorMedido": 14,
+      "unidad": "porcentaje_tiempo",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Encuesta de estimación + time tracking (muestra de 8 devs, 2 semanas)",
+      "muestraTamaño": 19,
+      "baseline": 35,
+      "mejora": -60,
+      "mejoraEsperada": -60,
+      "notas": "728h → 291h por developer - exactamente como proyectado"
+    }
+  ],
+  "flutterSpecificMetrics": [
+    {
+      "id": "FLUTTER-001",
+      "nombre": "Crash-Free Users",
+      "categoria": "FLUTTER_QUALITY",
+      "valorMedido": 95.8,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Firebase Crashlytics - últimos 30 días",
+      "muestraTamaño": 62140,
+      "desglose": {
+        "totalSessions": 62140,
+        "crashedSessions": 2610,
+        "crashFreeRate": 95.8
+      },
+      "clasificacion": "bueno",
+      "baseline": 93.2,
+      "mejora": 2.8,
+      "mejoraEsperada": 2.5
+    },
+    {
+      "id": "FLUTTER-002",
+      "nombre": "Hot Reload Success Rate",
+      "categoria": "FLUTTER_DX",
+      "valorMedido": 83,
+      "unidad": "porcentaje",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Encuesta manual - últimas 100 hot reloads",
+      "muestraTamaño": 100,
+      "baseline": 82,
+      "mejora": 1.2,
+      "mejoraEsperada": 0,
+      "notas": "Mínima mejora esperada (no afectado por IA)"
+    },
+    {
+      "id": "FLUTTER-003",
+      "nombre": "Platform Channels Stability",
+      "categoria": "FLUTTER_QUALITY",
+      "valorMedido": 1.8,
+      "unidad": "crashes_per_month",
+      "fechaMedicion": "2025-09-30",
+      "metodologia": "Crashlytics filtrado por platform channel stack traces",
+      "muestraTamaño": 30,
+      "baseline": 3,
+      "mejora": -40,
+      "mejoraEsperada": -30,
+      "notas": "Mejor manejo de null safety con IA"
+    }
+  ],
+  "impactoFinanciero": {
+    "inversionAnual": 9360,
+    "ahorrosAnuales": 779066,
+    "roiPorcentaje": 8222,
+    "paybackDias": 4.4,
+    "npv3Años": 1914146,
+    "fteEquivalente": 4.2,
+    "notaCalculos": "Ver formulas.md y web-calculator para desglose completo"
+  },
+  "comparacionConProyeccion": {
+    "metricsWithinExpectation": 15,
+    "metricsExceededExpectation": 3,
+    "metricsBelowExpectation": 1,
+    "precisionPromedio": 95.4,
+    "notas": "Proyecciones del framework fueron 95%+ precisas"
+  },
+  "topWins": [
+    {
+      "rank": 1,
+      "win": "Copilot eliminó 80% del boilerplate tedioso",
+      "menciones": 17,
+      "categoria": "efficiency"
+    },
+    {
+      "rank": 2,
+      "win": "Puedo hacer features en 1/3 del tiempo",
+      "menciones": 14,
+      "categoria": "performance"
+    },
+    {
+      "rank": 3,
+      "win": "Me siento más creativo, menos robot",
+      "menciones": 11,
+      "categoria": "satisfaction"
+    },
+    {
+      "rank": 4,
+      "win": "Juniors contribuyen desde Semana 1",
+      "menciones": 9,
+      "categoria": "activity"
+    },
+    {
+      "rank": 5,
+      "win": "CFR mejoró en vez de empeorar como temíamos",
+      "menciones": 8,
+      "categoria": "quality"
+    }
+  ],
+  "lessonsLearned": [
+    "Training inicial de 2h es crítico - demos > slides",
+    "Primeras 2 semanas son ramp-up (productivity -5%), luego +20%",
+    "Seniors más escépticos adoptan en Semana 3-4 al ver resultados de juniors",
+    "Subir test coverage a 85% compensó bugs potenciales de IA",
+    "Crear conventions.md con Flutter patterns mejoró sugerencias 40%"
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "$schema": "https://firebase.google.com/schemas/crashlytics/v1/session-data.json",
+  "metadata": {
+    "appId": "1:123456789:android:abcdef123456",
+    "appName": "MyFlutterApp",
+    "platform": "android",
+    "version": "1.5.2",
+    "buildNumber": "152",
+    "queryPeriod": {
+      "startDate": "2025-10-15T00:00:00Z",
+      "endDate": "2025-11-13T23:59:59Z",
+      "days": 30
+    },
+    "generatedAt": "2025-11-13T10:30:00Z"
+  },
+  "summary": {
+    "totalSessions": 45820,
+    "crashedSessions": 1374,
+    "crashFreeSessions": 44446,
+    "crashFreeRate": 0.97,
+    "crashFreePercentage": 97.0,
+    "totalCrashes": 1521,
+    "affectedUsers": 892,
+    "totalActiveUsers": 12340,
+    "affectedUsersPercentage": 7.23
+  },
+  "changeFailureRate": {
+    "calculation": "crashedSessions / totalDeployments",
+    "deploymentsInPeriod": 8,
+    "deploymentsWithCrashes": 3,
+    "cfr": 37.5,
+    "cfrFormatted": "37.5%",
+    "classification": "mejorable",
+    "note": "3 de 8 deployments tuvieron crashes críticos en primeras 24h"
+  },
+  "topCrashes": [
+    {
+      "issueId": "crash-001",
+      "title": "NullPointerException in ProfileScreen",
+      "type": "crash",
+      "impactedUsers": 342,
+      "occurrences": 487,
+      "firstSeen": "2025-10-18T14:23:15Z",
+      "lastSeen": "2025-10-21T09:45:33Z",
+      "status": "fixed",
+      "fixedInVersion": "1.5.3",
+      "affectedVersions": ["1.5.2"],
+      "severity": "high",
+      "stackTrace": [
+        "at com.example.myapp.ProfileScreen.build(ProfileScreen.dart:145)",
+        "at flutter.widgets.StatefulWidget.build(StatefulWidget.dart:89)",
+        "at flutter.rendering.RenderObjectElement.mount(RenderObjectElement.dart:234)"
+      ]
+    },
+    {
+      "issueId": "crash-002",
+      "title": "OutOfMemoryError: Failed to allocate bitmap",
+      "type": "crash",
+      "impactedUsers": 278,
+      "occurrences": 312,
+      "firstSeen": "2025-10-22T08:12:44Z",
+      "lastSeen": "2025-11-10T16:30:22Z",
+      "status": "open",
+      "affectedVersions": ["1.5.2", "1.5.3"],
+      "severity": "critical",
+      "stackTrace": [
+        "at android.graphics.BitmapFactory.nativeDecodeStream(BitmapFactory.java)",
+        "at com.example.myapp.ImageCache.loadImage(ImageCache.dart:67)",
+        "at com.example.myapp.GalleryScreen.build(GalleryScreen.dart:201)"
+      ]
+    },
+    {
+      "issueId": "crash-003",
+      "title": "IllegalStateException: Widget disposed",
+      "type": "crash",
+      "impactedUsers": 156,
+      "occurrences": 203,
+      "firstSeen": "2025-10-25T11:45:18Z",
+      "lastSeen": "2025-11-12T14:22:09Z",
+      "status": "open",
+      "affectedVersions": ["1.5.2", "1.5.3"],
+      "severity": "medium",
+      "stackTrace": [
+        "at flutter.widgets.State.setState(State.dart:123)",
+        "at com.example.myapp.HomeScreen._loadData(HomeScreen.dart:89)",
+        "at com.example.myapp.HomeScreen.initState(HomeScreen.dart:54)"
+      ]
+    },
+    {
+      "issueId": "crash-004",
+      "title": "NetworkException: Connection timeout",
+      "type": "crash",
+      "impactedUsers": 89,
+      "occurrences": 134,
+      "firstSeen": "2025-10-28T09:30:45Z",
+      "lastSeen": "2025-11-13T08:15:33Z",
+      "status": "monitoring",
+      "affectedVersions": ["1.5.2", "1.5.3", "1.5.4"],
+      "severity": "low",
+      "stackTrace": [
+        "at dart.io.HttpClient.getUrl(HttpClient.dart:234)",
+        "at com.example.myapp.ApiService.fetchData(ApiService.dart:112)",
+        "at com.example.myapp.DataRepository.getData(DataRepository.dart:45)"
+      ]
+    },
+    {
+      "issueId": "crash-005",
+      "title": "IndexOutOfBoundsException in ListView",
+      "type": "crash",
+      "impactedUsers": 27,
+      "occurrences": 35,
+      "firstSeen": "2025-11-05T13:22:11Z",
+      "lastSeen": "2025-11-11T17:44:55Z",
+      "status": "open",
+      "affectedVersions": ["1.5.3", "1.5.4"],
+      "severity": "medium",
+      "stackTrace": [
+        "at dart.core.List.[] (List.dart:89)",
+        "at com.example.myapp.SearchScreen._buildItem(SearchScreen.dart:178)",
+        "at flutter.widgets.ListView.builder(ListView.dart:345)"
+      ]
+    }
+  ],
+  "crashesByVersion": [
+    {
+      "version": "1.5.4",
+      "buildNumber": "154",
+      "sessions": 12340,
+      "crashes": 169,
+      "crashFreeRate": 98.63,
+      "deployedAt": "2025-11-05T09:00:00Z",
+      "daysActive": 8
+    },
+    {
+      "version": "1.5.3",
+      "buildNumber": "153",
+      "sessions": 18920,
+      "crashes": 445,
+      "crashFreeRate": 97.65,
+      "deployedAt": "2025-10-25T14:30:00Z",
+      "daysActive": 19
+    },
+    {
+      "version": "1.5.2",
+      "buildNumber": "152",
+      "sessions": 14560,
+      "crashes": 907,
+      "crashFreeRate": 93.77,
+      "deployedAt": "2025-10-15T10:00:00Z",
+      "daysActive": 30,
+      "note": "High crash rate due to crash-001 and crash-002"
+    }
+  ],
+  "crashesByPlatform": {
+    "android": {
+      "sessions": 28450,
+      "crashes": 1123,
+      "crashFreeRate": 96.05,
+      "topDevices": [
+        {"model": "Samsung Galaxy S21", "crashes": 234},
+        {"model": "Xiaomi Redmi Note 10", "crashes": 189},
+        {"model": "Google Pixel 6", "crashes": 145}
+      ]
+    },
+    "ios": {
+      "sessions": 17370,
+      "crashes": 398,
+      "crashFreeRate": 97.71,
+      "topDevices": [
+        {"model": "iPhone 13", "crashes": 89},
+        {"model": "iPhone 12", "crashes": 67},
+        {"model": "iPhone 11", "crashes": 54}
+      ]
+    }
+  },
+  "velocityMetrics": {
+    "avgTimeToDetection": {
+      "hours": 2.3,
+      "note": "Tiempo promedio desde deployment hasta detección de crash crítico"
+    },
+    "avgTimeToResolution": {
+      "hours": 38.7,
+      "note": "Tiempo promedio desde detección hasta fix en producción"
+    },
+    "mttr": {
+      "hours": 41.0,
+      "formatted": "1.7 días",
+      "classification": "bueno",
+      "benchmark": "DORA: <24h = elite, <1 week = high"
+    }
+  },
+  "trends": {
+    "crashFreeRateTrend": "improving",
+    "weekOverWeekChange": 1.58,
+    "monthOverMonthChange": 3.23,
+    "note": "Mejora consistente desde v1.5.2 → v1.5.4"
+  },
+  "recommendations": [
+    {
+      "priority": "high",
+      "issue": "crash-002",
+      "action": "Implementar lazy loading y image compression para resolver OutOfMemoryError",
+      "estimatedImpact": "Reducción de ~20% en crash rate"
+    },
+    {
+      "priority": "medium",
+      "issue": "crash-003",
+      "action": "Revisar lifecycle management de StatefulWidgets",
+      "estimatedImpact": "Reducción de ~10% en crash rate"
+    },
+    {
+      "priority": "low",
+      "issue": "crash-004",
+      "action": "Aumentar timeout de network requests y agregar retry logic",
+      "estimatedImpact": "Reducción de ~5% en crash rate"
+    }
+  ]
+}

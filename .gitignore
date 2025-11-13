@@ -1,0 +1,72 @@
+# Framework de Observabilidad del Impacto de IA - .gitignore
+
+# Node modules (para calculadora web JavaScript)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de entorno y configuración sensible
+.env
+.env.local
+.env.*.local
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vs/
+
+# Logs
+*.log
+logs/
+
+# Archivos de build (si se genera sitio estático)
+dist/
+build/
+out/
+.cache/
+
+# Archivos de coverage (si se usan tests)
+coverage/
+.nyc_output/
+
+# Archivos de test temporales
+test-results/
+*.test.out
+
+# Archivos específicos de Dart/Flutter (si se usa Flutter Web para calculadora)
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+
+# Archivos específicos de Python (si se usan scripts de análisis)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+venv/
+.venv/
+env/
+
+# Backups
+*.bak
+*.backup
+*~
+
+# Archivos de documentación temporales
+*.draft.md
+*.wip.md

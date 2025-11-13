@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora ROI - IA para Flutter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Calculadora ROI de IA para Flutter</h1>
+            <p class="subtitle">Calcula el retorno de inversión de adoptar GitHub Copilot, Cursor, u otras herramientas de IA</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Section -->
+            <section class="card inputs-section">
+                <h2>📊 Parámetros de tu Equipo</h2>
+
+                <div class="input-group">
+                    <label for="teamSize">
+                        <span class="label-text">Tamaño del Equipo</span>
+                        <span class="label-value" id="teamSizeValue">20</span> developers
+                    </label>
+                    <input type="range" id="teamSize" min="1" max="100" value="20" step="1">
+                    <div class="range-labels">
+                        <span>1</span>
+                        <span>50</span>
+                        <span>100</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="avgSalary">
+                        <span class="label-text">Salario Promedio Anual</span>
+                        <span class="label-value" id="avgSalaryValue">$150,000</span>
+                    </label>
+                    <input type="range" id="avgSalary" min="50000" max="300000" value="150000" step="5000">
+                    <div class="range-labels">
+                        <span>$50K</span>
+                        <span>$150K</span>
+                        <span>$300K</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="toolCost">
+                        <span class="label-text">Costo Herramienta IA (por developer/mes)</span>
+                        <span class="label-value" id="toolCostValue">$39</span>
+                    </label>
+                    <input type="range" id="toolCost" min="0" max="100" value="39" step="1">
+                    <div class="range-labels">
+                        <span>$0</span>
+                        <span>$50</span>
+                        <span>$100</span>
+                    </div>
+                    <div class="tool-presets">
+                        <button class="preset-btn" data-cost="0">CodeWhisperer (Gratis)</button>
+                        <button class="preset-btn" data-cost="10">Copilot Individual ($10)</button>
+                        <button class="preset-btn" data-cost="20">Cursor ($20)</button>
+                        <button class="preset-btn" data-cost="39">Copilot Business ($39)</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="boilerplateReduction">
+                        <span class="label-text">% Reducción en Boilerplate</span>
+                        <span class="label-value" id="boilerplateReductionValue">60%</span>
+                    </label>
+                    <input type="range" id="boilerplateReduction" min="0" max="100" value="60" step="5">
+                    <div class="range-labels">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                    <p class="input-hint">Estudios documentan 55-60% con GitHub Copilot</p>
+                </div>
+
+                <div class="input-group">
+                    <label for="onboardingReduction">
+                        <span class="label-text">% Reducción en Onboarding Time</span>
+                        <span class="label-value" id="onboardingReductionValue">50%</span>
+                    </label>
+                    <input type="range" id="onboardingReduction" min="0" max="100" value="50" step="5">
+                    <div class="range-labels">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="crashReduction">
+                        <span class="label-text">% Reducción en Crashes</span>
+                        <span class="label-value" id="crashReductionValue">30%</span>
+                    </label>
+                    <input type="range" id="crashReduction" min="0" max="100" value="30" step="5">
+                    <div class="range-labels">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                    <p class="input-hint">GitHub reporta 30% menos bugs con IA</p>
+                </div>
+
+                <div class="scenario-presets">
+                    <h3>⚡ Escenarios Rápidos</h3>
+                    <button class="scenario-btn" data-scenario="conservative">Conservador (30/25/15%)</button>
+                    <button class="scenario-btn" data-scenario="base">Base (60/50/30%)</button>
+                    <button class="scenario-btn" data-scenario="optimistic">Optimista (75/63/38%)</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="card results-section">
+                <h2>💰 Resultados Financieros</h2>
+
+                <div class="results-grid">
+                    <div class="result-card primary">
+                        <div class="result-label">Inversión Anual</div>
+                        <div class="result-value" id="annualInvestment">$9,360</div>
+                        <div class="result-detail" id="investmentDetail">$39/mes × 20 devs × 12 meses</div>
+                    </div>
+
+                    <div class="result-card success">
+                        <div class="result-label">Ahorros Anuales</div>
+                        <div class="result-value" id="annualSavings">$779,066</div>
+                        <div class="result-detail">Costo evitado con IA</div>
+                    </div>
+
+                    <div class="result-card highlight">
+                        <div class="result-label">ROI %</div>
+                        <div class="result-value" id="roiPercentage">8,222%</div>
+                        <div class="result-detail" id="roiMultiple">82x retorno</div>
+                    </div>
+
+                    <div class="result-card info">
+                        <div class="result-label">Payback Period</div>
+                        <div class="result-value" id="paybackDays">4.4 días</div>
+                        <div class="result-detail">Recuperación de inversión</div>
+                    </div>
+
+                    <div class="result-card secondary">
+                        <div class="result-label">NPV (3 años, 10%)</div>
+                        <div class="result-value" id="npv3Years">$1,914,146</div>
+                        <div class="result-detail">Valor presente neto</div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="result-label">Costo de Inacción</div>
+                        <div class="result-value" id="costOfInaction">$1,461,000</div>
+                        <div class="result-detail">Costo de NO adoptar IA</div>
+                    </div>
+                </div>
+
+                <!-- Breakdown -->
+                <div class="breakdown">
+                    <h3>📋 Desglose de Ahorros</h3>
+                    <table class="breakdown-table">
+                        <thead>
+                            <tr>
+                                <th>Categoría</th>
+                                <th>Costo Baseline</th>
+                                <th>% Reducción</th>
+                                <th>Ahorro Anual</th>
+                            </tr>
+                        </thead>
+                        <tbody id="breakdownTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                        <tfoot>
+                            <tr class="total-row">
+                                <td><strong>TOTAL</strong></td>
+                                <td id="totalBaseline">$1,461,000</td>
+                                <td>-</td>
+                                <td id="totalSavings">$779,066</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-container">
+                    <h3>📈 Visualización de ROI</h3>
+                    <canvas id="roiChart"></canvas>
+                </div>
+
+                <!-- Sensitivity Analysis -->
+                <div class="sensitivity-analysis">
+                    <h3>🎯 Análisis de Sensibilidad</h3>
+                    <p class="section-subtitle">¿Qué pasa si las mejoras son diferentes?</p>
+                    <table class="sensitivity-table">
+                        <thead>
+                            <tr>
+                                <th>Escenario</th>
+                                <th>% Mejoras</th>
+                                <th>Ahorro Anual</th>
+                                <th>ROI %</th>
+                                <th>Payback</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sensitivityTableBody">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Export Button -->
+                <div class="export-section">
+                    <button id="exportBtn" class="export-btn">
+                        📄 Exportar Resultados (TXT)
+                    </button>
+                    <p class="export-hint">Descarga un resumen completo para incluir en tu business case</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Comparison Section -->
+        <section class="card comparison-section">
+            <h2>⚖️ Comparación con Alternativas</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h3>Opción A: Adoptar IA</h3>
+                    <div class="comparison-metric">
+                        <span class="metric-label">Costo Anual:</span>
+                        <span class="metric-value" id="aiCost">$9,360</span>
+                    </div>
+                    <div class="comparison-metric">
+                        <span class="metric-label">Productividad Extra:</span>
+                        <span class="metric-value" id="aiProductivity">4.2 FTE</span>
+                    </div>
+                    <div class="comparison-metric">
+                        <span class="metric-label">Costo/Hora:</span>
+                        <span class="metric-value" id="aiCostPerHour">$1.07</span>
+                    </div>
+                    <div class="comparison-result success">
+                        ✅ Recomendado
+                    </div>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Opción B: Contratar 1 Developer</h3>
+                    <div class="comparison-metric">
+                        <span class="metric-label">Costo Anual:</span>
+                        <span class="metric-value" id="hireCost">$180,000</span>
+                    </div>
+                    <div class="comparison-metric">
+                        <span class="metric-label">Productividad Extra:</span>
+                        <span class="metric-value">1.0 FTE</span>
+                    </div>
+                    <div class="comparison-metric">
+                        <span class="metric-label">Costo/Hora:</span>
+                        <span class="metric-value" id="hireCostPerHour">$86.54</span>
+                    </div>
+                    <div class="comparison-result">
+                        ⚠️ 80x más caro que IA
+                    </div>
+                </div>
+            </div>
+            <p class="comparison-conclusion">
+                <strong>Conclusión:</strong> IA ofrece <span id="productivityMultiple">4.2x</span> más productividad que contratar,
+                a <span id="costRatio">1/19</span> del costo.
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Framework de Observabilidad del Impacto de IA para Flutter v1.0.0</p>
+            <p>Basado en: GitHub Copilot Impact Study (2022), Accenture Generative AI Study (2023)</p>
+            <p class="disclaimer">
+                <strong>Disclaimer:</strong> Los resultados son proyecciones basadas en estudios de la industria.
+                Los resultados reales pueden variar. Se recomienda ejecutar un piloto de 90 días para validar.
+            </p>
+        </footer>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
