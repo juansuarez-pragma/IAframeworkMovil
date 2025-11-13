@@ -1,79 +1,79 @@
 ---
-description: Execute the implementation plan by processing and executing all tasks defined in tasks.md
+description: Ejecutar el plan de implementación procesando y ejecutando todas las tareas definidas en tasks.md
 ---
 
-## User Input
+## Entrada del Usuario
 
 ```text
 $ARGUMENTS
 ```
 
-You **MUST** consider the user input before proceeding (if not empty).
+**DEBES** considerar la entrada del usuario antes de proceder (si no está vacía).
 
-## Outline
+## Esquema
 
-1. Run `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+1. Ejecutar `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` desde la raíz del repo y analizar FEATURE_DIR y lista AVAILABLE_DOCS. Todas las rutas deben ser absolutas. Para comillas simples en args como "I'm Groot", usar sintaxis de escape: ej. 'I'\''m Groot' (o comillas dobles si es posible: "I'm Groot").
 
-2. **Check checklists status** (if FEATURE_DIR/checklists/ exists):
-   - Scan all checklist files in the checklists/ directory
-   - For each checklist, count:
-     - Total items: All lines matching `- [ ]` or `- [X]` or `- [x]`
-     - Completed items: Lines matching `- [X]` or `- [x]`
-     - Incomplete items: Lines matching `- [ ]`
-   - Create a status table:
+2. **Verificar estado de checklists** (si FEATURE_DIR/checklists/ existe):
+   - Escanear todos los archivos de checklist en el directorio checklists/
+   - Para cada checklist, contar:
+     - Total de items: Todas las líneas que coincidan con `- [ ]` o `- [X]` o `- [x]`
+     - Items completados: Líneas que coincidan con `- [X]` o `- [x]`
+     - Items incompletos: Líneas que coincidan con `- [ ]`
+   - Crear una tabla de estado:
 
      ```text
-     | Checklist | Total | Completed | Incomplete | Status |
-     |-----------|-------|-----------|------------|--------|
-     | ux.md     | 12    | 12        | 0          | ✓ PASS |
-     | test.md   | 8     | 5         | 3          | ✗ FAIL |
-     | security.md | 6   | 6         | 0          | ✓ PASS |
+     | Checklist   | Total | Completado | Incompleto | Estado  |
+     |-------------|-------|------------|------------|---------|
+     | ux.md       | 12    | 12         | 0          | ✓ PASS  |
+     | test.md     | 8     | 5          | 3          | ✗ FAIL  |
+     | security.md | 6     | 6          | 0          | ✓ PASS  |
      ```
 
-   - Calculate overall status:
-     - **PASS**: All checklists have 0 incomplete items
-     - **FAIL**: One or more checklists have incomplete items
+   - Calcular estado general:
+     - **PASS**: Todos los checklists tienen 0 items incompletos
+     - **FAIL**: Uno o más checklists tienen items incompletos
 
-   - **If any checklist is incomplete**:
-     - Display the table with incomplete item counts
-     - **STOP** and ask: "Some checklists are incomplete. Do you want to proceed with implementation anyway? (yes/no)"
-     - Wait for user response before continuing
-     - If user says "no" or "wait" or "stop", halt execution
-     - If user says "yes" or "proceed" or "continue", proceed to step 3
+   - **Si algún checklist está incompleto**:
+     - Mostrar la tabla con conteo de items incompletos
+     - **DETENER** y preguntar: "Algunos checklists están incompletos. ¿Deseas proceder con la implementación de todos modos? (sí/no)"
+     - Esperar respuesta del usuario antes de continuar
+     - Si el usuario dice "no" o "espera" o "detener", detener ejecución
+     - Si el usuario dice "sí" o "proceder" o "continuar", proceder al paso 3
 
-   - **If all checklists are complete**:
-     - Display the table showing all checklists passed
-     - Automatically proceed to step 3
+   - **Si todos los checklists están completos**:
+     - Mostrar la tabla mostrando que todos los checklists pasaron
+     - Proceder automáticamente al paso 3
 
-3. Load and analyze the implementation context:
-   - **REQUIRED**: Read tasks.md for the complete task list and execution plan
-   - **REQUIRED**: Read plan.md for tech stack, architecture, and file structure
-   - **IF EXISTS**: Read data-model.md for entities and relationships
-   - **IF EXISTS**: Read contracts/ for API specifications and test requirements
-   - **IF EXISTS**: Read research.md for technical decisions and constraints
-   - **IF EXISTS**: Read quickstart.md for integration scenarios
+3. Cargar y analizar el contexto de implementación:
+   - **REQUERIDO**: Leer tasks.md para la lista completa de tareas y plan de ejecución
+   - **REQUERIDO**: Leer plan.md para tech stack, arquitectura, y estructura de archivos
+   - **SI EXISTE**: Leer data-model.md para entidades y relaciones
+   - **SI EXISTE**: Leer contracts/ para especificaciones API y requisitos de prueba
+   - **SI EXISTE**: Leer research.md para decisiones técnicas y restricciones
+   - **SI EXISTE**: Leer quickstart.md para escenarios de integración
 
-4. **Project Setup Verification**:
-   - **REQUIRED**: Create/verify ignore files based on actual project setup:
+4. **Verificación de Setup del Proyecto**:
+   - **REQUERIDO**: Crear/verificar archivos ignore basados en setup real del proyecto:
 
-   **Detection & Creation Logic**:
-   - Check if the following command succeeds to determine if the repository is a git repo (create/verify .gitignore if so):
+   **Lógica de Detección y Creación**:
+   - Verificar si el siguiente comando tiene éxito para determinar si el repositorio es un repo git (crear/verificar .gitignore si lo es):
 
      ```sh
      git rev-parse --git-dir 2>/dev/null
      ```
 
-   - Check if Dockerfile* exists or Docker in plan.md → create/verify .dockerignore
-   - Check if .eslintrc*or eslint.config.* exists → create/verify .eslintignore
-   - Check if .prettierrc* exists → create/verify .prettierignore
-   - Check if .npmrc or package.json exists → create/verify .npmignore (if publishing)
-   - Check if terraform files (*.tf) exist → create/verify .terraformignore
-   - Check if .helmignore needed (helm charts present) → create/verify .helmignore
+   - Verificar si Dockerfile* existe o Docker en plan.md → crear/verificar .dockerignore
+   - Verificar si .eslintrc* o eslint.config.* existe → crear/verificar .eslintignore
+   - Verificar si .prettierrc* existe → crear/verificar .prettierignore
+   - Verificar si .npmrc o package.json existe → crear/verificar .npmignore (si se publica)
+   - Verificar si archivos terraform (*.tf) existen → crear/verificar .terraformignore
+   - Verificar si .helmignore es necesario (charts helm presentes) → crear/verificar .helmignore
 
-   **If ignore file already exists**: Verify it contains essential patterns, append missing critical patterns only
-   **If ignore file missing**: Create with full pattern set for detected technology
+   **Si archivo ignore ya existe**: Verificar que contenga patrones esenciales, agregar solo patrones críticos faltantes
+   **Si archivo ignore falta**: Crear con conjunto completo de patrones para tecnología detectada
 
-   **Common Patterns by Technology** (from plan.md tech stack):
+   **Patrones Comunes por Tecnología** (desde tech stack de plan.md):
    - **Node.js/JavaScript/TypeScript**: `node_modules/`, `dist/`, `build/`, `*.log`, `.env*`
    - **Python**: `__pycache__/`, `*.pyc`, `.venv/`, `venv/`, `dist/`, `*.egg-info/`
    - **Java**: `target/`, `*.class`, `*.jar`, `.gradle/`, `build/`
@@ -89,46 +89,46 @@ You **MUST** consider the user input before proceeding (if not empty).
    - **R**: `.Rproj.user/`, `.Rhistory`, `.RData`, `.Ruserdata`, `*.Rproj`, `packrat/`, `renv/`
    - **Universal**: `.DS_Store`, `Thumbs.db`, `*.tmp`, `*.swp`, `.vscode/`, `.idea/`
 
-   **Tool-Specific Patterns**:
+   **Patrones Específicos de Herramientas**:
    - **Docker**: `node_modules/`, `.git/`, `Dockerfile*`, `.dockerignore`, `*.log*`, `.env*`, `coverage/`
    - **ESLint**: `node_modules/`, `dist/`, `build/`, `coverage/`, `*.min.js`
    - **Prettier**: `node_modules/`, `dist/`, `build/`, `coverage/`, `package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`
    - **Terraform**: `.terraform/`, `*.tfstate*`, `*.tfvars`, `.terraform.lock.hcl`
    - **Kubernetes/k8s**: `*.secret.yaml`, `secrets/`, `.kube/`, `kubeconfig*`, `*.key`, `*.crt`
 
-5. Parse tasks.md structure and extract:
-   - **Task phases**: Setup, Tests, Core, Integration, Polish
-   - **Task dependencies**: Sequential vs parallel execution rules
-   - **Task details**: ID, description, file paths, parallel markers [P]
-   - **Execution flow**: Order and dependency requirements
+5. Analizar estructura de tasks.md y extraer:
+   - **Fases de tareas**: Setup, Tests, Core, Integration, Polish
+   - **Dependencias de tareas**: Reglas de ejecución secuencial vs paralela
+   - **Detalles de tareas**: ID, descripción, rutas de archivo, marcadores paralelos [P]
+   - **Flujo de ejecución**: Orden y requisitos de dependencia
 
-6. Execute implementation following the task plan:
-   - **Phase-by-phase execution**: Complete each phase before moving to the next
-   - **Respect dependencies**: Run sequential tasks in order, parallel tasks [P] can run together  
-   - **Follow TDD approach**: Execute test tasks before their corresponding implementation tasks
-   - **File-based coordination**: Tasks affecting the same files must run sequentially
-   - **Validation checkpoints**: Verify each phase completion before proceeding
+6. Ejecutar implementación siguiendo el plan de tareas:
+   - **Ejecución fase por fase**: Completar cada fase antes de pasar a la siguiente
+   - **Respetar dependencias**: Ejecutar tareas secuenciales en orden, tareas paralelas [P] pueden ejecutarse juntas
+   - **Seguir enfoque TDD**: Ejecutar tareas de test antes de sus correspondientes tareas de implementación
+   - **Coordinación basada en archivos**: Tareas que afectan los mismos archivos deben ejecutarse secuencialmente
+   - **Puntos de validación**: Verificar completación de cada fase antes de proceder
 
-7. Implementation execution rules:
-   - **Setup first**: Initialize project structure, dependencies, configuration
-   - **Tests before code**: If you need to write tests for contracts, entities, and integration scenarios
-   - **Core development**: Implement models, services, CLI commands, endpoints
-   - **Integration work**: Database connections, middleware, logging, external services
-   - **Polish and validation**: Unit tests, performance optimization, documentation
+7. Reglas de ejecución de implementación:
+   - **Setup primero**: Inicializar estructura del proyecto, dependencias, configuración
+   - **Tests antes de código**: Si necesitas escribir tests para contratos, entidades, y escenarios de integración
+   - **Desarrollo core**: Implementar modelos, servicios, comandos CLI, endpoints
+   - **Trabajo de integración**: Conexiones de base de datos, middleware, logging, servicios externos
+   - **Pulido y validación**: Tests unitarios, optimización de rendimiento, documentación
 
-8. Progress tracking and error handling:
-   - Report progress after each completed task
-   - Halt execution if any non-parallel task fails
-   - For parallel tasks [P], continue with successful tasks, report failed ones
-   - Provide clear error messages with context for debugging
-   - Suggest next steps if implementation cannot proceed
-   - **IMPORTANT** For completed tasks, make sure to mark the task off as [X] in the tasks file.
+8. Seguimiento de progreso y manejo de errores:
+   - Reportar progreso después de cada tarea completada
+   - Detener ejecución si cualquier tarea no paralela falla
+   - Para tareas paralelas [P], continuar con tareas exitosas, reportar las que fallaron
+   - Proporcionar mensajes de error claros con contexto para debugging
+   - Sugerir próximos pasos si la implementación no puede proceder
+   - **IMPORTANTE** Para tareas completadas, asegúrate de marcar la tarea como [X] en el archivo de tareas.
 
-9. Completion validation:
-   - Verify all required tasks are completed
-   - Check that implemented features match the original specification
-   - Validate that tests pass and coverage meets requirements
-   - Confirm the implementation follows the technical plan
-   - Report final status with summary of completed work
+9. Validación de completación:
+   - Verificar que todas las tareas requeridas están completadas
+   - Verificar que las features implementadas coincidan con la especificación original
+   - Validar que los tests pasen y la cobertura cumpla requisitos
+   - Confirmar que la implementación sigue el plan técnico
+   - Reportar estado final con resumen del trabajo completado
 
-Note: This command assumes a complete task breakdown exists in tasks.md. If tasks are incomplete or missing, suggest running `/speckit.tasks` first to regenerate the task list.
+Nota: Este comando asume que existe un desglose completo de tareas en tasks.md. Si las tareas están incompletas o faltan, sugerir ejecutar `/speckit.tasks` primero para regenerar la lista de tareas.

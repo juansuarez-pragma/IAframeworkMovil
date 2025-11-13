@@ -1,81 +1,81 @@
 ---
-description: Execute the implementation planning workflow using the plan template to generate design artifacts.
+description: Ejecutar el flujo de trabajo de planificación de implementación usando el template de plan para generar artefactos de diseño.
 ---
 
-## User Input
+## Entrada del Usuario
 
 ```text
 $ARGUMENTS
 ```
 
-You **MUST** consider the user input before proceeding (if not empty).
+**DEBES** considerar la entrada del usuario antes de proceder (si no está vacía).
 
-## Outline
+## Esquema
 
-1. **Setup**: Run `.specify/scripts/bash/setup-plan.sh --json` from repo root and parse JSON for FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+1. **Configuración**: Ejecutar `.specify/scripts/bash/setup-plan.sh --json` desde la raíz del repositorio y analizar JSON para FEATURE_SPEC, IMPL_PLAN, SPECS_DIR, BRANCH. Para comillas simples en args como "I'm Groot", usar sintaxis de escape: ej. 'I'\''m Groot' (o comillas dobles si es posible: "I'm Groot").
 
-2. **Load context**: Read FEATURE_SPEC and `.specify/memory/constitution.md`. Load IMPL_PLAN template (already copied).
+2. **Cargar contexto**: Leer FEATURE_SPEC y `.specify/memory/constitution.md`. Cargar template IMPL_PLAN (ya copiado).
 
-3. **Execute plan workflow**: Follow the structure in IMPL_PLAN template to:
-   - Fill Technical Context (mark unknowns as "NEEDS CLARIFICATION")
-   - Fill Constitution Check section from constitution
-   - Evaluate gates (ERROR if violations unjustified)
-   - Phase 0: Generate research.md (resolve all NEEDS CLARIFICATION)
-   - Phase 1: Generate data-model.md, contracts/, quickstart.md
-   - Phase 1: Update agent context by running the agent script
-   - Re-evaluate Constitution Check post-design
+3. **Ejecutar flujo de plan**: Seguir la estructura en el template IMPL_PLAN para:
+   - Llenar Contexto Técnico (marcar incógnitas como "NECESITA CLARIFICACIÓN")
+   - Llenar sección de Verificación de Constitución desde constitution
+   - Evaluar gates (ERROR si hay violaciones injustificadas)
+   - Fase 0: Generar research.md (resolver todas las NECESITA CLARIFICACIÓN)
+   - Fase 1: Generar data-model.md, contracts/, quickstart.md
+   - Fase 1: Actualizar contexto del agente ejecutando el script del agente
+   - Re-evaluar Verificación de Constitución post-diseño
 
-4. **Stop and report**: Command ends after Phase 2 planning. Report branch, IMPL_PLAN path, and generated artifacts.
+4. **Detener y reportar**: El comando termina después de la planificación de Fase 2. Reportar branch, ruta IMPL_PLAN, y artefactos generados.
 
-## Phases
+## Fases
 
-### Phase 0: Outline & Research
+### Fase 0: Esquema e Investigación
 
-1. **Extract unknowns from Technical Context** above:
-   - For each NEEDS CLARIFICATION → research task
-   - For each dependency → best practices task
-   - For each integration → patterns task
+1. **Extraer incógnitas del Contexto Técnico** anterior:
+   - Por cada NECESITA CLARIFICACIÓN → tarea de investigación
+   - Por cada dependencia → tarea de mejores prácticas
+   - Por cada integración → tarea de patrones
 
-2. **Generate and dispatch research agents**:
+2. **Generar y despachar agentes de investigación**:
 
    ```text
-   For each unknown in Technical Context:
-     Task: "Research {unknown} for {feature context}"
-   For each technology choice:
-     Task: "Find best practices for {tech} in {domain}"
+   Por cada incógnita en Contexto Técnico:
+     Tarea: "Investigar {incógnita} para {contexto de feature}"
+   Por cada elección de tecnología:
+     Tarea: "Encontrar mejores prácticas para {tech} en {dominio}"
    ```
 
-3. **Consolidate findings** in `research.md` using format:
-   - Decision: [what was chosen]
-   - Rationale: [why chosen]
-   - Alternatives considered: [what else evaluated]
+3. **Consolidar hallazgos** en `research.md` usando formato:
+   - Decisión: [qué se eligió]
+   - Justificación: [por qué se eligió]
+   - Alternativas consideradas: [qué más se evaluó]
 
-**Output**: research.md with all NEEDS CLARIFICATION resolved
+**Salida**: research.md con todas las NECESITA CLARIFICACIÓN resueltas
 
-### Phase 1: Design & Contracts
+### Fase 1: Diseño y Contratos
 
-**Prerequisites:** `research.md` complete
+**Prerequisitos:** `research.md` completo
 
-1. **Extract entities from feature spec** → `data-model.md`:
-   - Entity name, fields, relationships
-   - Validation rules from requirements
-   - State transitions if applicable
+1. **Extraer entidades del spec de feature** → `data-model.md`:
+   - Nombre de entidad, campos, relaciones
+   - Reglas de validación de requisitos
+   - Transiciones de estado si aplica
 
-2. **Generate API contracts** from functional requirements:
-   - For each user action → endpoint
-   - Use standard REST/GraphQL patterns
-   - Output OpenAPI/GraphQL schema to `/contracts/`
+2. **Generar contratos API** de requisitos funcionales:
+   - Por cada acción de usuario → endpoint
+   - Usar patrones estándar REST/GraphQL
+   - Salida OpenAPI/GraphQL schema a `/contracts/`
 
-3. **Agent context update**:
-   - Run `.specify/scripts/bash/update-agent-context.sh claude`
-   - These scripts detect which AI agent is in use
-   - Update the appropriate agent-specific context file
-   - Add only new technology from current plan
-   - Preserve manual additions between markers
+3. **Actualización de contexto del agente**:
+   - Ejecutar `.specify/scripts/bash/update-agent-context.sh claude`
+   - Estos scripts detectan qué agente de IA está en uso
+   - Actualizar el archivo de contexto específico del agente apropiado
+   - Agregar solo tecnología nueva del plan actual
+   - Preservar adiciones manuales entre marcadores
 
-**Output**: data-model.md, /contracts/*, quickstart.md, agent-specific file
+**Salida**: data-model.md, /contracts/*, quickstart.md, archivo específico del agente
 
-## Key rules
+## Reglas clave
 
-- Use absolute paths
-- ERROR on gate failures or unresolved clarifications
+- Usar rutas absolutas
+- ERROR en fallas de gate o clarificaciones no resueltas

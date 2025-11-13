@@ -1,9 +1,9 @@
 ---
 
-description: "Task list template for feature implementation"
+description: "Plantilla de lista de tareas para implementación de funcionalidad"
 ---
 
-# Tasks: [FEATURE NAME]
+# Tareas: [FEATURE NAME]
 
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
@@ -12,39 +12,39 @@ description: "Task list template for feature implementation"
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
-## Format: `[ID] [P?] [Story] Description`
+## Formato: `[ID] [P?] [Story] Description`
 
 - **[P]**: Can run in parallel (different files, no dependencies)
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
 - Include exact file paths in descriptions
 
-## Path Conventions
+## Convenciones de Ruta
 
 - **Single project**: `src/`, `tests/` at repository root
 - **Web app**: `backend/src/`, `frontend/src/`
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
 
-<!-- 
+<!--
   ============================================================================
-  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-  
-  The /speckit.tasks command MUST replace these with actual tasks based on:
-  - User stories from spec.md (with their priorities P1, P2, P3...)
-  - Feature requirements from plan.md
-  - Entities from data-model.md
-  - Endpoints from contracts/
-  
-  Tasks MUST be organized by user story so each story can be:
-  - Implemented independently
-  - Tested independently
-  - Delivered as an MVP increment
-  
-  DO NOT keep these sample tasks in the generated tasks.md file.
+  IMPORTANTE: Las tareas debajo son TAREAS DE MUESTRA solo para propósitos ilustrativos.
+
+  El comando /speckit.tasks DEBE reemplazar estas con tareas reales basadas en:
+  - Historias de usuario de spec.md (con sus prioridades P1, P2, P3...)
+  - Requisitos de funcionalidad de plan.md
+  - Entidades de data-model.md
+  - Endpoints de contracts/
+
+  Las tareas DEBEN organizarse por historia de usuario para que cada historia pueda ser:
+  - Implementada independientemente
+  - Probada independientemente
+  - Entregada como un incremento MVP
+
+  NO mantener estas tareas de muestra en el archivo tasks.md generado.
   ============================================================================
 -->
 
-## Phase 1: Setup (Shared Infrastructure)
+## Fase 1: Setup (Shared Infrastructure)
 
 **Purpose**: Project initialization and basic structure
 
@@ -54,7 +54,7 @@ description: "Task list template for feature implementation"
 
 ---
 
-## Phase 2: Foundational (Blocking Prerequisites)
+## Fase 2: Foundational (Blocking Prerequisites)
 
 **Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
 
@@ -73,7 +73,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase 3: User Story 1 - [Title] (Priority: P1) 🎯 MVP
+## Fase 3: User Story 1 - [Title] (Priority: P1) 🎯 MVP
 
 **Goal**: [Brief description of what this story delivers]
 
@@ -99,7 +99,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase 4: User Story 2 - [Title] (Priority: P2)
+## Fase 4: User Story 2 - [Title] (Priority: P2)
 
 **Goal**: [Brief description of what this story delivers]
 
@@ -121,7 +121,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase 5: User Story 3 - [Title] (Priority: P3)
+## Fase 5: User Story 3 - [Title] (Priority: P3)
 
 **Goal**: [Brief description of what this story delivers]
 
@@ -146,7 +146,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Phase N: Polish & Cross-Cutting Concerns
+## Fase N: Polish & Cross-Cutting Concerns
 
 **Purpose**: Improvements that affect multiple user stories
 
@@ -159,9 +159,9 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Dependencies & Execution Order
+## Dependencias y Orden de Ejecución
 
-### Phase Dependencies
+### Dependencias de Fase
 
 - **Setup (Phase 1)**: No dependencies - can start immediately
 - **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
@@ -170,13 +170,13 @@ Examples of foundational tasks (adjust based on your project):
   - Or sequentially in priority order (P1 → P2 → P3)
 - **Polish (Final Phase)**: Depends on all desired user stories being complete
 
-### User Story Dependencies
+### Dependencias de Historia de Usuario
 
 - **User Story 1 (P1)**: Can start after Foundational (Phase 2) - No dependencies on other stories
 - **User Story 2 (P2)**: Can start after Foundational (Phase 2) - May integrate with US1 but should be independently testable
 - **User Story 3 (P3)**: Can start after Foundational (Phase 2) - May integrate with US1/US2 but should be independently testable
 
-### Within Each User Story
+### Dentro de Cada Historia de Usuario
 
 - Tests (if included) MUST be written and FAIL before implementation
 - Models before services
@@ -184,7 +184,7 @@ Examples of foundational tasks (adjust based on your project):
 - Core implementation before integration
 - Story complete before moving to next priority
 
-### Parallel Opportunities
+### Oportunidades de Paralelismo
 
 - All Setup tasks marked [P] can run in parallel
 - All Foundational tasks marked [P] can run in parallel (within Phase 2)
@@ -195,7 +195,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ---
 
-## Parallel Example: User Story 1
+## Ejemplo Paralelo: User Story 1
 
 ```bash
 # Launch all tests for User Story 1 together (if tests requested):
@@ -209,7 +209,7 @@ Task: "Create [Entity2] model in src/models/[entity2].py"
 
 ---
 
-## Implementation Strategy
+## Estrategia de Implementación
 
 ### MVP First (User Story 1 Only)
 
@@ -219,7 +219,7 @@ Task: "Create [Entity2] model in src/models/[entity2].py"
 4. **STOP and VALIDATE**: Test User Story 1 independently
 5. Deploy/demo if ready
 
-### Incremental Delivery
+### Entrega Incremental
 
 1. Complete Setup + Foundational → Foundation ready
 2. Add User Story 1 → Test independently → Deploy/Demo (MVP!)
@@ -227,7 +227,7 @@ Task: "Create [Entity2] model in src/models/[entity2].py"
 4. Add User Story 3 → Test independently → Deploy/Demo
 5. Each story adds value without breaking previous stories
 
-### Parallel Team Strategy
+### Estrategia de Equipo Paralelo
 
 With multiple developers:
 
@@ -240,7 +240,7 @@ With multiple developers:
 
 ---
 
-## Notes
+## Notas
 
 - [P] tasks = different files, no dependencies
 - [Story] label maps task to specific user story for traceability

@@ -1,26 +1,26 @@
-# Feature Specification: [FEATURE NAME]
+# Especificación de Funcionalidad: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
+**Feature Branch**: `[###-feature-name]`
+**Created**: [DATE]
+**Status**: Draft
 **Input**: User description: "$ARGUMENTS"
 
-## User Scenarios & Testing *(mandatory)*
+## Escenarios de Usuario y Pruebas *(obligatorio)*
 
 <!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
+  IMPORTANTE: Las historias de usuario deben estar PRIORIZADAS como recorridos de usuario ordenados por importancia.
+  Cada historia/recorrido de usuario debe ser INDEPENDIENTEMENTE TESTEABLE - significa que si implementas solo UNA de ellas,
+  aún deberías tener un MVP (Producto Mínimo Viable) viable que entregue valor.
+
+  Asignar prioridades (P1, P2, P3, etc.) a cada historia, donde P1 es la más crítica.
+  Pensar en cada historia como una porción independiente de funcionalidad que puede ser:
+  - Desarrollada independientemente
+  - Probada independientemente
+  - Desplegada independientemente
+  - Demostrada a usuarios independientemente
 -->
 
-### User Story 1 - [Brief Title] (Priority: P1)
+### Historia de Usuario 1 - [Brief Title] (Priority: P1)
 
 [Describe this user journey in plain language]
 
@@ -35,7 +35,7 @@
 
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
+### Historia de Usuario 2 - [Brief Title] (Priority: P2)
 
 [Describe this user journey in plain language]
 
@@ -49,7 +49,7 @@
 
 ---
 
-### User Story 3 - [Brief Title] (Priority: P3)
+### Historia de Usuario 3 - [Brief Title] (Priority: P3)
 
 [Describe this user journey in plain language]
 
@@ -65,27 +65,27 @@
 
 [Add more user stories as needed, each with an assigned priority]
 
-### Edge Cases
+### Casos Límite
 
 <!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
+  ACCIÓN REQUERIDA: El contenido en esta sección representa placeholders.
+  Completarlos con los casos límite correctos.
 -->
 
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
 
-## Requirements *(mandatory)*
+## Requisitos *(obligatorio)*
 
 <!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
+  ACCIÓN REQUERIDA: El contenido en esta sección representa placeholders.
+  Completarlos con los requisitos funcionales correctos.
 -->
 
-### Functional Requirements
+### Requisitos Funcionales
 
 - **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
+- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
@@ -95,19 +95,19 @@
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
-### Key Entities *(include if feature involves data)*
+### Entidades Clave *(include if feature involves data)*
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
-## Success Criteria *(mandatory)*
+## Criterios de Éxito *(obligatorio)*
 
 <!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
+  ACCIÓN REQUERIDA: Definir criterios de éxito medibles.
+  Estos deben ser agnósticos de tecnología y medibles.
 -->
 
-### Measurable Outcomes
+### Resultados Medibles
 
 - **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
 - **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]

@@ -1,184 +1,184 @@
 ---
-description: Perform a non-destructive cross-artifact consistency and quality analysis across spec.md, plan.md, and tasks.md after task generation.
+description: Realizar un análisis no destructivo de consistencia y calidad entre artefactos a través de spec.md, plan.md y tasks.md después de la generación de tareas.
 ---
 
-## User Input
+## Entrada del Usuario
 
 ```text
 $ARGUMENTS
 ```
 
-You **MUST** consider the user input before proceeding (if not empty).
+**DEBE** considerar la entrada del usuario antes de proceder (si no está vacía).
 
-## Goal
+## Objetivo
 
-Identify inconsistencies, duplications, ambiguities, and underspecified items across the three core artifacts (`spec.md`, `plan.md`, `tasks.md`) before implementation. This command MUST run only after `/speckit.tasks` has successfully produced a complete `tasks.md`.
+Identificar inconsistencias, duplicaciones, ambigüedades y elementos subespecificados a través de los tres artefactos principales (`spec.md`, `plan.md`, `tasks.md`) antes de la implementación. Este comando DEBE ejecutarse solo después de que `/speckit.tasks` haya producido exitosamente un `tasks.md` completo.
 
-## Operating Constraints
+## Restricciones Operacionales
 
-**STRICTLY READ-ONLY**: Do **not** modify any files. Output a structured analysis report. Offer an optional remediation plan (user must explicitly approve before any follow-up editing commands would be invoked manually).
+**ESTRICTAMENTE DE SOLO LECTURA**: **No** modificar ningún archivo. Generar un reporte de análisis estructurado. Ofrecer un plan de remediación opcional (el usuario debe aprobar explícitamente antes de que se invoquen manualmente comandos de edición subsecuentes).
 
-**Constitution Authority**: The project constitution (`.specify/memory/constitution.md`) is **non-negotiable** within this analysis scope. Constitution conflicts are automatically CRITICAL and require adjustment of the spec, plan, or tasks—not dilution, reinterpretation, or silent ignoring of the principle. If a principle itself needs to change, that must occur in a separate, explicit constitution update outside `/speckit.analyze`.
+**Autoridad de la Constitución**: La constitución del proyecto (`.specify/memory/constitution.md`) es **no negociable** dentro de este alcance de análisis. Los conflictos con la constitución son automáticamente CRÍTICOS y requieren ajuste de la especificación, plan o tareas—no dilución, reinterpretación o ignorancia silenciosa del principio. Si un principio en sí necesita cambiar, eso debe ocurrir en una actualización de constitución separada y explícita fuera de `/speckit.analyze`.
 
-## Execution Steps
+## Pasos de Ejecución
 
-### 1. Initialize Analysis Context
+### 1. Inicializar Contexto de Análisis
 
-Run `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` once from repo root and parse JSON for FEATURE_DIR and AVAILABLE_DOCS. Derive absolute paths:
+Ejecutar `.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks` una vez desde la raíz del repositorio y analizar JSON para FEATURE_DIR y AVAILABLE_DOCS. Derivar rutas absolutas:
 
 - SPEC = FEATURE_DIR/spec.md
 - PLAN = FEATURE_DIR/plan.md
 - TASKS = FEATURE_DIR/tasks.md
 
-Abort with an error message if any required file is missing (instruct the user to run missing prerequisite command).
-For single quotes in args like "I'm Groot", use escape syntax: e.g 'I'\''m Groot' (or double-quote if possible: "I'm Groot").
+Abortar con un mensaje de error si falta algún archivo requerido (instruir al usuario para ejecutar el comando de prerrequisito faltante).
+Para comillas simples en args como "I'm Groot", usar sintaxis de escape: ej. 'I'\''m Groot' (o comillas dobles si es posible: "I'm Groot").
 
-### 2. Load Artifacts (Progressive Disclosure)
+### 2. Cargar Artefactos (Divulgación Progresiva)
 
-Load only the minimal necessary context from each artifact:
+Cargar solo el contexto mínimo necesario de cada artefacto:
 
-**From spec.md:**
+**De spec.md:**
 
-- Overview/Context
-- Functional Requirements
-- Non-Functional Requirements
-- User Stories
-- Edge Cases (if present)
+- Visión General/Contexto
+- Requisitos Funcionales
+- Requisitos No Funcionales
+- Historias de Usuario
+- Casos Límite (si están presentes)
 
-**From plan.md:**
+**De plan.md:**
 
-- Architecture/stack choices
-- Data Model references
-- Phases
-- Technical constraints
+- Opciones de Arquitectura/stack
+- Referencias de Modelo de Datos
+- Fases
+- Restricciones Técnicas
 
-**From tasks.md:**
+**De tasks.md:**
 
-- Task IDs
-- Descriptions
-- Phase grouping
-- Parallel markers [P]
-- Referenced file paths
+- IDs de Tarea
+- Descripciones
+- Agrupación por Fase
+- Marcadores Paralelos [P]
+- Rutas de archivo referenciadas
 
-**From constitution:**
+**De constitution:**
 
-- Load `.specify/memory/constitution.md` for principle validation
+- Cargar `.specify/memory/constitution.md` para validación de principios
 
-### 3. Build Semantic Models
+### 3. Construir Modelos Semánticos
 
-Create internal representations (do not include raw artifacts in output):
+Crear representaciones internas (no incluir artefactos crudos en la salida):
 
-- **Requirements inventory**: Each functional + non-functional requirement with a stable key (derive slug based on imperative phrase; e.g., "User can upload file" → `user-can-upload-file`)
-- **User story/action inventory**: Discrete user actions with acceptance criteria
-- **Task coverage mapping**: Map each task to one or more requirements or stories (inference by keyword / explicit reference patterns like IDs or key phrases)
-- **Constitution rule set**: Extract principle names and MUST/SHOULD normative statements
+- **Inventario de requisitos**: Cada requisito funcional + no funcional con una clave estable (derivar slug basado en frase imperativa; ej., "User can upload file" → `user-can-upload-file`)
+- **Inventario de historia de usuario/acción**: Acciones discretas de usuario con criterios de aceptación
+- **Mapeo de cobertura de tareas**: Mapear cada tarea a uno o más requisitos o historias (inferencia por palabra clave / patrones de referencia explícitos como IDs o frases clave)
+- **Conjunto de reglas de constitución**: Extraer nombres de principios y declaraciones normativas MUST/SHOULD
 
-### 4. Detection Passes (Token-Efficient Analysis)
+### 4. Pases de Detección (Análisis Eficiente en Tokens)
 
-Focus on high-signal findings. Limit to 50 findings total; aggregate remainder in overflow summary.
+Enfocarse en hallazgos de alta señal. Limitar a 50 hallazgos totales; agregar el resto en resumen de desbordamiento.
 
-#### A. Duplication Detection
+#### A. Detección de Duplicación
 
-- Identify near-duplicate requirements
-- Mark lower-quality phrasing for consolidation
+- Identificar requisitos casi duplicados
+- Marcar redacción de menor calidad para consolidación
 
-#### B. Ambiguity Detection
+#### B. Detección de Ambigüedad
 
-- Flag vague adjectives (fast, scalable, secure, intuitive, robust) lacking measurable criteria
-- Flag unresolved placeholders (TODO, TKTK, ???, `<placeholder>`, etc.)
+- Marcar adjetivos vagos (rápido, escalable, seguro, intuitivo, robusto) que carecen de criterios medibles
+- Marcar placeholders sin resolver (TODO, TKTK, ???, `<placeholder>`, etc.)
 
-#### C. Underspecification
+#### C. Subespecificación
 
-- Requirements with verbs but missing object or measurable outcome
-- User stories missing acceptance criteria alignment
-- Tasks referencing files or components not defined in spec/plan
+- Requisitos con verbos pero faltando objeto o resultado medible
+- Historias de usuario faltando alineación de criterios de aceptación
+- Tareas referenciando archivos o componentes no definidos en spec/plan
 
-#### D. Constitution Alignment
+#### D. Alineación con Constitución
 
-- Any requirement or plan element conflicting with a MUST principle
-- Missing mandated sections or quality gates from constitution
+- Cualquier requisito o elemento de plan en conflicto con un principio MUST
+- Secciones mandatorias faltantes o puertas de calidad de la constitución
 
-#### E. Coverage Gaps
+#### E. Brechas de Cobertura
 
-- Requirements with zero associated tasks
-- Tasks with no mapped requirement/story
-- Non-functional requirements not reflected in tasks (e.g., performance, security)
+- Requisitos con cero tareas asociadas
+- Tareas sin requisito/historia mapeada
+- Requisitos no funcionales no reflejados en tareas (ej., rendimiento, seguridad)
 
-#### F. Inconsistency
+#### F. Inconsistencia
 
-- Terminology drift (same concept named differently across files)
-- Data entities referenced in plan but absent in spec (or vice versa)
-- Task ordering contradictions (e.g., integration tasks before foundational setup tasks without dependency note)
-- Conflicting requirements (e.g., one requires Next.js while other specifies Vue)
+- Deriva de terminología (mismo concepto nombrado diferentemente a través de archivos)
+- Entidades de datos referenciadas en plan pero ausentes en spec (o viceversa)
+- Contradicciones de ordenamiento de tareas (ej., tareas de integración antes de tareas de configuración fundamental sin nota de dependencia)
+- Requisitos en conflicto (ej., uno requiere Next.js mientras otro especifica Vue)
 
-### 5. Severity Assignment
+### 5. Asignación de Severidad
 
-Use this heuristic to prioritize findings:
+Usar esta heurística para priorizar hallazgos:
 
-- **CRITICAL**: Violates constitution MUST, missing core spec artifact, or requirement with zero coverage that blocks baseline functionality
-- **HIGH**: Duplicate or conflicting requirement, ambiguous security/performance attribute, untestable acceptance criterion
-- **MEDIUM**: Terminology drift, missing non-functional task coverage, underspecified edge case
-- **LOW**: Style/wording improvements, minor redundancy not affecting execution order
+- **CRÍTICO**: Viola un MUST de la constitución, falta artefacto central de especificación, o requisito con cero cobertura que bloquea funcionalidad base
+- **ALTO**: Requisito duplicado o en conflicto, atributo ambiguo de seguridad/rendimiento, criterio de aceptación no testeable
+- **MEDIO**: Deriva de terminología, cobertura de tarea no funcional faltante, caso límite subespecificado
+- **BAJO**: Mejoras de estilo/redacción, redundancia menor que no afecta orden de ejecución
 
-### 6. Produce Compact Analysis Report
+### 6. Producir Reporte de Análisis Compacto
 
-Output a Markdown report (no file writes) with the following structure:
+Generar un reporte Markdown (sin escritura de archivos) con la siguiente estructura:
 
-## Specification Analysis Report
+## Reporte de Análisis de Especificación
 
 | ID | Category | Severity | Location(s) | Summary | Recommendation |
 |----|----------|----------|-------------|---------|----------------|
 | A1 | Duplication | HIGH | spec.md:L120-134 | Two similar requirements ... | Merge phrasing; keep clearer version |
 
-(Add one row per finding; generate stable IDs prefixed by category initial.)
+(Agregar una fila por hallazgo; generar IDs estables prefijados por inicial de categoría.)
 
-**Coverage Summary Table:**
+**Tabla Resumen de Cobertura:**
 
 | Requirement Key | Has Task? | Task IDs | Notes |
 |-----------------|-----------|----------|-------|
 
-**Constitution Alignment Issues:** (if any)
+**Problemas de Alineación con Constitución:** (si los hay)
 
-**Unmapped Tasks:** (if any)
+**Tareas No Mapeadas:** (si las hay)
 
-**Metrics:**
+**Métricas:**
 
-- Total Requirements
-- Total Tasks
-- Coverage % (requirements with >=1 task)
-- Ambiguity Count
-- Duplication Count
-- Critical Issues Count
+- Total de Requisitos
+- Total de Tareas
+- % de Cobertura (requisitos con >=1 tarea)
+- Conteo de Ambigüedades
+- Conteo de Duplicaciones
+- Conteo de Problemas Críticos
 
-### 7. Provide Next Actions
+### 7. Proporcionar Próximas Acciones
 
-At end of report, output a concise Next Actions block:
+Al final del reporte, generar un bloque conciso de Próximas Acciones:
 
-- If CRITICAL issues exist: Recommend resolving before `/speckit.implement`
-- If only LOW/MEDIUM: User may proceed, but provide improvement suggestions
-- Provide explicit command suggestions: e.g., "Run /speckit.specify with refinement", "Run /speckit.plan to adjust architecture", "Manually edit tasks.md to add coverage for 'performance-metrics'"
+- Si existen problemas CRÍTICOS: Recomendar resolver antes de `/speckit.implement`
+- Si solo BAJO/MEDIO: El usuario puede proceder, pero proporcionar sugerencias de mejora
+- Proporcionar sugerencias de comandos explícitos: ej., "Ejecutar /speckit.specify con refinamiento", "Ejecutar /speckit.plan para ajustar arquitectura", "Editar manualmente tasks.md para agregar cobertura para 'performance-metrics'"
 
-### 8. Offer Remediation
+### 8. Ofrecer Remediación
 
-Ask the user: "Would you like me to suggest concrete remediation edits for the top N issues?" (Do NOT apply them automatically.)
+Preguntar al usuario: "¿Te gustaría que sugiera ediciones de remediación concretas para los N problemas principales?" (NO aplicarlas automáticamente.)
 
-## Operating Principles
+## Principios Operacionales
 
-### Context Efficiency
+### Eficiencia de Contexto
 
-- **Minimal high-signal tokens**: Focus on actionable findings, not exhaustive documentation
-- **Progressive disclosure**: Load artifacts incrementally; don't dump all content into analysis
-- **Token-efficient output**: Limit findings table to 50 rows; summarize overflow
-- **Deterministic results**: Rerunning without changes should produce consistent IDs and counts
+- **Tokens mínimos de alta señal**: Enfocarse en hallazgos accionables, no documentación exhaustiva
+- **Divulgación progresiva**: Cargar artefactos incrementalmente; no volcar todo el contenido en el análisis
+- **Salida eficiente en tokens**: Limitar tabla de hallazgos a 50 filas; resumir desbordamiento
+- **Resultados determinísticos**: Volver a ejecutar sin cambios debe producir IDs y conteos consistentes
 
-### Analysis Guidelines
+### Directrices de Análisis
 
-- **NEVER modify files** (this is read-only analysis)
-- **NEVER hallucinate missing sections** (if absent, report them accurately)
-- **Prioritize constitution violations** (these are always CRITICAL)
-- **Use examples over exhaustive rules** (cite specific instances, not generic patterns)
-- **Report zero issues gracefully** (emit success report with coverage statistics)
+- **NUNCA modificar archivos** (esto es análisis de solo lectura)
+- **NUNCA alucinar secciones faltantes** (si están ausentes, reportarlas con precisión)
+- **Priorizar violaciones de constitución** (estas son siempre CRÍTICAS)
+- **Usar ejemplos sobre reglas exhaustivas** (citar instancias específicas, no patrones genéricos)
+- **Reportar cero problemas con gracia** (emitir reporte de éxito con estadísticas de cobertura)
 
-## Context
+## Contexto
 
 $ARGUMENTS

@@ -1,7 +1,7 @@
-# [PROJECT_NAME] Constitution
+# [PROJECT_NAME] Constitución
 <!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
-## Core Principles
+## Principios Centrales
 
 ### [PRINCIPLE_1_NAME]
 <!-- Example: I. Library-First -->
@@ -40,7 +40,7 @@
 [SECTION_3_CONTENT]
 <!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
-## Governance
+## Gobernanza
 <!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
 [GOVERNANCE_RULES]
